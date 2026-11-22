@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>외국어공부</title><meta name="theme-color" content="#3563e9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%233563e9'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle' fill='white'%3E外%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--ink:#1c2333;--muted:#6a7489;--pri:#3563e9;--pri-soft:#e8eefd;--ok:#15803d;--ok-soft:#dcfce7;--bad:#b91c1c;--bad-soft:#fee2e2;--warn:#b45309;--warn-soft:#fef3c7;--line:#e2e7f0;--rest:#eef0f5}
+body.dark{--bg:#0e1320;--card:#171e30;--ink:#e8ecf6;--muted:#97a3bb;--pri:#7b9cff;--pri-soft:#212c4a;--ok:#4ade80;--ok-soft:#14301f;--bad:#f87171;--bad-soft:#3a1a1d;--warn:#fbbf24;--warn-soft:#3a2d12;--line:#27314b;--rest:#1d2438}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Hiragino Sans","PingFang SC",system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 96px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:22px 0 10px}h3{font-size:16px;margin:0 0 6px}
+p{margin:6px 0}a{color:var(--pri);text-decoration:none}
+.muted{color:var(--muted)}.small{font-size:13px}.center{text-align:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.card.pri{border-color:var(--pri);background:var(--pri-soft)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}}
+.btn{display:inline-block;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px;border-radius:10px;font:inherit;font-weight:600;cursor:pointer;text-align:center}
+.btn:hover{border-color:var(--pri)}.btn.primary{background:var(--pri);color:#fff;border-color:var(--pri)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}.btn.small{padding:6px 12px;font-size:14px}.btn[disabled]{opacity:.5;cursor:default}
+.btn.block{display:block;width:100%}
+.link{background:none;border:0;color:var(--muted);cursor:pointer;font:inherit;text-decoration:underline}
+.chip{display:inline-block;background:var(--pri-soft);color:var(--pri);border-radius:99px;padding:2px 10px;font-size:13px;font-weight:600}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}.chip.warn{background:var(--warn-soft);color:var(--warn)}.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.xp{background:var(--pri-soft);color:var(--pri);border-radius:12px;padding:6px 12px;font-weight:700;white-space:nowrap}
+.banner{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:10px 14px;margin:10px 0;font-weight:600}
+.nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);z-index:5;padding-bottom:env(safe-area-inset-bottom)}
+.nav a{flex:1;text-align:center;padding:10px 2px;font-size:12px;color:var(--muted);font-weight:600}.nav a b{display:block;font-size:18px;line-height:1.2}.nav a.on{color:var(--pri)}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pri);border-radius:99px}.bar.ok i{background:var(--ok)}
+.sess-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.q .big{font-size:30px;font-weight:700;text-align:center;margin:18px 0;line-height:1.5;word-break:keep-all}
+.q .sent{font-size:20px;text-align:center;margin:14px 0;font-weight:600}
+.q .rd{font-size:14px;color:var(--muted);text-align:center;margin-top:-6px}
+.q .hg{display:block;font-size:14px;color:var(--muted);font-weight:500}
+.ctx{background:var(--bg);border-radius:10px;padding:12px;margin:10px 0;font-size:17px;line-height:1.9}
+.opts{display:grid;gap:10px;margin-top:14px}
+.opt{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:13px 14px;font:inherit;font-size:17px;text-align:left;cursor:pointer}
+.opt:hover{border-color:var(--pri)}.opt.ok{border-color:var(--ok);background:var(--ok-soft)}.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt[disabled]{cursor:default}
+input[type=text],input[type=password],input[type=time],input[type=number],textarea,select{width:100%;font:inherit;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}
+textarea{min-height:140px;resize:vertical}
+.fb{margin-top:14px;padding:12px;border-radius:10px;font-weight:600}.fb.ok{background:var(--ok-soft);color:var(--ok)}.fb.bad{background:var(--bad-soft);color:var(--bad)}
+.fb small{display:block;font-weight:400;color:var(--ink);margin-top:4px}
+ruby rt{font-size:.5em;color:var(--muted);font-weight:500}
+.score-row{display:grid;grid-template-columns:64px 1fr 44px;gap:10px;align-items:center;margin:8px 0}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.cal .h{text-align:center;font-size:12px;color:var(--muted);padding:4px 0}
+.cal .d{min-height:54px;border-radius:8px;padding:4px;font-size:12px;background:var(--card);border:1px solid var(--line);position:relative}
+.cal .d.rest{background:var(--rest);color:var(--muted)}.cal .d.done{background:var(--ok-soft);border-color:var(--ok)}
+.cal .d.credited{background:var(--pri-soft);border-color:var(--pri)}.cal .d.extra{background:var(--pri-soft);border-color:var(--pri)}
+.cal .d.missed{background:var(--bad-soft);border-color:var(--bad)}.cal .d.pending{border:2px solid var(--warn)}
+.cal .d.today b{text-decoration:underline}.cal .d .t{display:block;margin-top:2px;font-weight:600}.cal .d .a{position:absolute;right:5px;top:4px;color:var(--pri)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:center}th{color:var(--muted);font-weight:600}td:first-child,th:first-child{text-align:left}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.tabs .btn.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.badge{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;font-size:13px;background:var(--card)}.badge b{display:block;font-size:26px}.badge.off{opacity:.4;filter:grayscale(1)}
+.switch{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);gap:10px}.switch:last-child{border:0}
+.switch input[type=checkbox]{width:22px;height:22px}
+pre{white-space:pre-wrap;word-break:break-word;background:var(--bg);padding:12px;border-radius:10px;font:14px/1.6 inherit}
+#toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#1c2333;color:#fff;padding:10px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:20;max-width:90vw;font-size:14px}
+#toast.on{opacity:.95}
+.lock{max-width:360px;margin:12vh auto 0}
+details summary{cursor:pointer;color:var(--pri);font-weight:600}
+</style></head><body><div id="app"></div><div id="toast"></div><script>(function(){"use strict";
+/* 외국어공부 - 내장 학습 콘텐츠 (영어·일본어·중국어)
+ * 구조: WL_CONTENT[언어][레벨 0~3][유닛] = {t, w:[단어...], p:{지문}}
+ * 단어: {w 단어, r 읽기(후리가나/병음), h 한글발음, k 뜻, e 예문, er 예문 읽기, ek 예문 뜻}
+ * 지문: {t 본문, r 읽기(선택), k 번역, q 질문, o 보기(정답이 첫 번째)}
+ */
+const E = (w, k, e, ek) => ({ w, r: "", h: "", k, e, er: "", ek });
+const X = (w, r, h, k, e, er, ek) => ({ w, r, h, k, e, er, ek });
+const P = (t, k, q, o, r) => ({ t, k, q, o, r: r || "" });
+const U = (t, w, p) => ({ t, w, p });
+
+const WL_CONTENT = {
+  en: [
+    [
+      U("인사와 소개", [
+        E("hello", "안녕하세요", "Hello, my name is Tom.", "안녕하세요, 제 이름은 톰입니다."),
+        E("goodbye", "안녕히 가세요", "Goodbye, see you tomorrow.", "안녕히 가세요, 내일 만나요."),
+        E("thank you", "감사합니다", "Thank you for your help.", "도와주셔서 감사합니다."),
+        E("please", "부탁합니다", "Please sit down.", "앉아 주세요."),
+        E("sorry", "미안합니다", "I am sorry I am late.", "늦어서 미안합니다.")
+      ], P("Hi, I am Mina. I am a student. I like music.", "안녕, 나는 미나야. 나는 학생이야. 나는 음악을 좋아해.", "미나는 누구인가요?", ["학생", "선생님", "의사"])),
+      U("음식", [
+        E("apple", "사과", "I eat an apple every day.", "나는 매일 사과를 먹는다."),
+        E("water", "물", "Can I have some water?", "물 좀 주시겠어요?"),
+        E("bread", "빵", "She buys bread at the store.", "그녀는 가게에서 빵을 산다."),
+        E("milk", "우유", "I drink milk in the morning.", "나는 아침에 우유를 마신다."),
+        E("rice", "밥", "We have rice for dinner.", "우리는 저녁으로 밥을 먹는다.")
+      ], P("I have breakfast at seven. I eat bread and drink milk.", "나는 7시에 아침을 먹는다. 빵을 먹고 우유를 마신다.", "아침에 무엇을 마시나요?", ["우유", "물", "주스"])),
+      U("가족", [
+        E("mother", "어머니", "My mother is a teacher.", "우리 어머니는 선생님이다."),
+        E("father", "아버지", "My father works at a bank.", "우리 아버지는 은행에서 일한다."),
+        E("brother", "남자 형제", "My brother plays soccer.", "내 남자 형제는 축구를 한다."),
+        E("sister", "여자 형제", "My sister likes books.", "내 여자 형제는 책을 좋아한다."),
+        E("friend", "친구", "He is my good friend.", "그는 나의 좋은 친구다.")
+      ], P("This is my family. I have a mother, a father, and one sister. We live in Seoul.", "이것은 우리 가족이다. 어머니, 아버지, 여동생 한 명이 있다. 우리는 서울에 산다.", "가족은 어디에 사나요?", ["서울", "부산", "도쿄"]))
+    ],
+    [
+      U("일상", [
+        E("wake up", "일어나다", "I wake up at six every morning.", "나는 매일 아침 6시에 일어난다."),
+        E("breakfast", "아침 식사", "We have breakfast together.", "우리는 함께 아침을 먹는다."),
+        E("school", "학교", "She walks to school.", "그녀는 걸어서 학교에 간다."),
+        E("homework", "숙제", "I finish my homework before dinner.", "나는 저녁 전에 숙제를 끝낸다."),
+        E("sleep", "자다", "I sleep for eight hours.", "나는 8시간 잔다.")
+      ], P("Tom wakes up at six. He walks to school with his friend. After school, he does his homework.", "톰은 6시에 일어난다. 그는 친구와 걸어서 학교에 간다. 방과 후에 숙제를 한다.", "톰은 학교에 어떻게 가나요?", ["걸어서", "버스로", "자전거로"])),
+      U("쇼핑", [
+        E("price", "가격", "What is the price of this shirt?", "이 셔츠의 가격은 얼마인가요?"),
+        E("cheap", "싼", "This bag is very cheap.", "이 가방은 매우 싸다."),
+        E("expensive", "비싼", "That watch is too expensive.", "저 시계는 너무 비싸다."),
+        E("buy", "사다", "I want to buy new shoes.", "나는 새 신발을 사고 싶다."),
+        E("size", "크기", "Do you have a bigger size?", "더 큰 사이즈가 있나요?")
+      ], P("Anna goes to a shop. She likes a red bag, but it is expensive. She buys a blue bag because it is cheap.", "안나는 가게에 간다. 빨간 가방이 마음에 들지만 비싸다. 파란 가방은 싸서 그것을 산다.", "안나는 왜 파란 가방을 샀나요?", ["싸서", "예뻐서", "커서"])),
+      U("날씨", [
+        E("sunny", "맑은", "It is sunny today.", "오늘은 날씨가 맑다."),
+        E("rainy", "비가 오는", "Tomorrow will be rainy.", "내일은 비가 올 것이다."),
+        E("cold", "추운", "It is cold in winter.", "겨울에는 춥다."),
+        E("hot", "더운", "Summer is hot in Korea.", "한국의 여름은 덥다."),
+        E("umbrella", "우산", "Take an umbrella with you.", "우산을 가지고 가세요.")
+      ], P("It is rainy today. Jenny takes an umbrella. The weather is cold, so she wears a coat.", "오늘은 비가 온다. 제니는 우산을 가져간다. 날씨가 추워서 코트를 입는다.", "제니는 무엇을 가져갔나요?", ["우산", "모자", "책"]))
+    ],
+    [
+      U("여행", [
+        E("reservation", "예약", "I made a hotel reservation online.", "나는 온라인으로 호텔 예약을 했다."),
+        E("passport", "여권", "Do not forget your passport.", "여권을 잊지 마세요."),
+        E("luggage", "짐", "My luggage is very heavy.", "내 짐은 매우 무겁다."),
+        E("destination", "목적지", "Our final destination is Busan.", "우리의 최종 목적지는 부산이다."),
+        E("delay", "지연", "The flight has a two-hour delay.", "비행기가 2시간 지연되었다.")
+      ], P("Our flight had a long delay, so we arrived at the hotel late. Fortunately, the reservation was still available.", "비행기가 오래 지연되어 우리는 호텔에 늦게 도착했다. 다행히 예약은 그대로 남아 있었다.", "호텔에 늦게 도착한 이유는 무엇인가요?", ["비행기 지연", "교통 체증", "길을 잃어서"])),
+      U("직장", [
+        E("meeting", "회의", "We have a meeting at ten.", "우리는 10시에 회의가 있다."),
+        E("deadline", "마감일", "The deadline is next Friday.", "마감일은 다음 주 금요일이다."),
+        E("colleague", "동료", "My colleague helped me with the report.", "동료가 보고서를 도와주었다."),
+        E("schedule", "일정", "Please check the schedule again.", "일정을 다시 확인해 주세요."),
+        E("improve", "개선하다", "We need to improve our service.", "우리는 서비스를 개선해야 한다.")
+      ], P("Our team has a meeting every Monday. We discuss the schedule and try to improve our work before the deadline.", "우리 팀은 매주 월요일에 회의를 한다. 일정을 논의하고 마감일 전에 업무를 개선하려고 한다.", "팀은 월요일마다 무엇을 하나요?", ["회의", "여행", "시험"])),
+      U("건강", [
+        E("exercise", "운동", "Regular exercise keeps you healthy.", "규칙적인 운동은 건강을 지켜 준다."),
+        E("headache", "두통", "I have a bad headache.", "나는 두통이 심하다."),
+        E("medicine", "약", "Take this medicine after meals.", "이 약을 식후에 드세요."),
+        E("habit", "습관", "Sleeping early is a good habit.", "일찍 자는 것은 좋은 습관이다."),
+        E("recover", "회복하다", "He will recover quickly from the flu.", "그는 독감에서 빨리 회복할 것이다.")
+      ], P("Sam had a headache for two days. He took medicine and rested. Now he is recovering and plans to start exercise again.", "샘은 이틀 동안 두통이 있었다. 약을 먹고 쉬었다. 지금은 회복 중이며 다시 운동을 시작할 계획이다.", "샘은 지금 어떤 상태인가요?", ["회복 중이다", "더 나빠졌다", "입원했다"]))
+    ],
+    [
+      U("사회와 환경", [
+        E("sustainable", "지속 가능한", "We need sustainable energy sources.", "우리는 지속 가능한 에너지원이 필요하다."),
+        E("pollution", "오염", "Air pollution affects our health.", "대기 오염은 우리 건강에 영향을 준다."),
+        E("regulation", "규제", "New regulations protect the environment.", "새로운 규제가 환경을 보호한다."),
+        E("consume", "소비하다", "People consume more than they need.", "사람들은 필요 이상으로 소비한다."),
+        E("urgent", "시급한", "Climate change is an urgent problem.", "기후 변화는 시급한 문제다.")
+      ], P("Governments are introducing stricter regulations to reduce pollution. However, experts argue that individuals must also change how they consume resources.", "정부는 오염을 줄이기 위해 더 엄격한 규제를 도입하고 있다. 그러나 전문가들은 개인도 자원을 소비하는 방식을 바꿔야 한다고 주장한다.", "전문가들의 주장은 무엇인가요?", ["개인도 소비 방식을 바꿔야 한다", "정부만 노력하면 된다", "오염은 줄지 않는다"])),
+      U("경제", [
+        E("inflation", "물가 상승", "Inflation has increased living costs.", "물가 상승으로 생활비가 늘었다."),
+        E("investment", "투자", "Education is a good investment.", "교육은 좋은 투자다."),
+        E("budget", "예산", "We must stay within the budget.", "우리는 예산 안에서 지출해야 한다."),
+        E("profit", "이익", "The company made a large profit.", "그 회사는 큰 이익을 냈다."),
+        E("competitive", "경쟁력 있는", "Their prices are very competitive.", "그들의 가격은 매우 경쟁력이 있다.")
+      ], P("Although the company's profit rose, inflation raised costs. The manager decided to cut the budget and focus on competitive products.", "회사의 이익은 늘었지만 물가 상승으로 비용이 올랐다. 관리자는 예산을 줄이고 경쟁력 있는 제품에 집중하기로 했다.", "관리자는 무엇을 결정했나요?", ["예산을 줄이고 경쟁력 있는 제품에 집중", "직원을 늘리기", "가격을 올리기"])),
+      U("학문과 의견", [
+        E("argument", "주장", "Her argument was very convincing.", "그녀의 주장은 매우 설득력이 있었다."),
+        E("evidence", "증거", "There is strong evidence for this theory.", "이 이론에는 강력한 증거가 있다."),
+        E("conclude", "결론짓다", "We can conclude that the method works.", "우리는 그 방법이 효과적이라고 결론지을 수 있다."),
+        E("opinion", "의견", "In my opinion, the plan is practical.", "내 의견으로는 그 계획은 현실적이다."),
+        E("critical", "비판적인", "Critical thinking is essential in research.", "연구에서는 비판적 사고가 필수적이다.")
+      ], P("The researcher presented strong evidence to support her argument. Critics remained skeptical, but most agreed that her conclusion was reasonable.", "연구자는 자신의 주장을 뒷받침하는 강력한 증거를 제시했다. 비판하는 사람들은 회의적이었지만 대부분은 그녀의 결론이 타당하다는 데 동의했다.", "대부분의 사람들은 그녀의 결론을 어떻게 보았나요?", ["타당하다고 동의했다", "완전히 반대했다", "관심이 없었다"]))
+    ]
+  ],
+
+  ja: [
+    [
+      U("인사와 소개", [
+        X("こんにちは", "こんにちは", "곤니치와", "안녕하세요", "こんにちは、田中です。", "こんにちは、たなかです。", "안녕하세요, 다나카입니다."),
+        X("ありがとう", "ありがとう", "아리가토", "고마워요", "ありがとうございます。", "ありがとうございます。", "감사합니다."),
+        X("さようなら", "さようなら", "사요나라", "안녕히 가세요", "さようなら、また明日。", "さようなら、またあした。", "안녕히 가세요, 내일 또 봐요."),
+        X("すみません", "すみません", "스미마셍", "죄송합니다", "すみません、遅れました。", "すみません、おくれました。", "죄송합니다, 늦었습니다."),
+        X("おはよう", "おはよう", "오하요", "좋은 아침", "おはよう、元気ですか。", "おはよう、げんきですか。", "좋은 아침, 잘 지내요?")
+      ], P("わたしは ミナです。学生です。音楽が すきです。", "저는 미나입니다. 학생입니다. 음악을 좋아합니다.", "미나는 누구인가요?", ["학생", "선생님", "의사"], "わたしは ミナです。がくせいです。おんがくが すきです。")),
+      U("음식", [
+        X("水", "みず", "미즈", "물", "水を ください。", "みずを ください。", "물을 주세요."),
+        X("パン", "パン", "팡", "빵", "朝ごはんに パンを 食べます。", "あさごはんに パンを たべます。", "아침 식사로 빵을 먹습니다."),
+        X("りんご", "りんご", "링고", "사과", "りんごが すきです。", "りんごが すきです。", "사과를 좋아합니다."),
+        X("牛乳", "ぎゅうにゅう", "규뉴", "우유", "毎朝 牛乳を のみます。", "まいあさ ぎゅうにゅうを のみます。", "매일 아침 우유를 마십니다."),
+        X("ごはん", "ごはん", "고항", "밥", "ごはんを 食べましょう。", "ごはんを たべましょう。", "밥을 먹읍시다.")
+      ], P("朝 七時に 朝ごはんを 食べます。パンと 牛乳です。", "아침 7시에 아침밥을 먹습니다. 빵과 우유입니다.", "아침에 무엇을 먹고 마시나요?", ["빵과 우유", "밥과 물", "사과와 차"], "あさ しちじに あさごはんを たべます。パンと ぎゅうにゅうです。")),
+      U("가족", [
+        X("母", "はは", "하하", "어머니", "母は 先生です。", "ははは せんせいです。", "어머니는 선생님입니다."),
+        X("父", "ちち", "치치", "아버지", "父は 銀行で はたらきます。", "ちちは ぎんこうで はたらきます。", "아버지는 은행에서 일합니다."),
+        X("兄", "あに", "아니", "형·오빠", "兄は サッカーが 上手です。", "あには サッカーが じょうずです。", "형은 축구를 잘합니다."),
+        X("姉", "あね", "아네", "누나·언니", "姉は 本が すきです。", "あねは ほんが すきです。", "언니는 책을 좋아합니다."),
+        X("友だち", "ともだち", "도모다치", "친구", "友だちと 話します。", "ともだちと はなします。", "친구와 이야기합니다.")
+      ], P("わたしの 家族です。母と 父と 姉が います。東京に すんでいます。", "우리 가족입니다. 어머니와 아버지와 누나가 있습니다. 도쿄에 살고 있습니다.", "가족은 어디에 사나요?", ["도쿄", "오사카", "서울"], "わたしの かぞくです。ははと ちちと あねが います。とうきょうに すんでいます。"))
+    ],
+    [
+      U("일상", [
+        X("起きる", "おきる", "오키루", "일어나다", "毎朝 六時に 起きます。", "まいあさ ろくじに おきます。", "매일 아침 6시에 일어납니다."),
+        X("学校", "がっこう", "각코", "학교", "学校まで 歩いて 行きます。", "がっこうまで あるいて いきます。", "학교까지 걸어서 갑니다."),
+        X("宿題", "しゅくだい", "슈쿠다이", "숙제", "夕飯の 前に 宿題を します。", "ゆうはんの まえに しゅくだいを します。", "저녁 식사 전에 숙제를 합니다."),
+        X("朝ごはん", "あさごはん", "아사고항", "아침밥", "家族と いっしょに 朝ごはんを 食べます。", "かぞくと いっしょに あさごはんを たべます。", "가족과 함께 아침밥을 먹습니다."),
+        X("寝る", "ねる", "네루", "자다", "夜 十一時に 寝ます。", "よる じゅういちじに ねます。", "밤 11시에 잡니다.")
+      ], P("田中さんは 六時に 起きます。友だちと 学校へ 歩いて 行きます。学校の あとで 宿題を します。", "다나카 씨는 6시에 일어납니다. 친구와 학교에 걸어서 갑니다. 학교가 끝난 뒤에 숙제를 합니다.", "다나카 씨는 학교에 어떻게 가나요?", ["걸어서", "버스로", "자전거로"], "たなかさんは ろくじに おきます。ともだちと がっこうへ あるいて いきます。がっこうの あとで しゅくだいを します。")),
+      U("쇼핑", [
+        X("値段", "ねだん", "네단", "가격", "この シャツの 値段は いくらですか。", "この シャツの ねだんは いくらですか。", "이 셔츠의 가격은 얼마입니까?"),
+        X("安い", "やすい", "야스이", "싸다", "この かばんは とても 安いです。", "この かばんは とても やすいです。", "이 가방은 매우 쌉니다."),
+        X("高い", "たかい", "다카이", "비싸다", "あの 時計は 高すぎます。", "あの とけいは たかすぎます。", "저 시계는 너무 비쌉니다."),
+        X("買う", "かう", "가우", "사다", "新しい くつを 買いたいです。", "あたらしい くつを かいたいです。", "새 신발을 사고 싶습니다."),
+        X("大きい", "おおきい", "오오키이", "크다", "もっと 大きい サイズは ありますか。", "もっと おおきい サイズは ありますか。", "더 큰 사이즈는 있습니까?")
+      ], P("アンナさんは 店へ 行きました。赤い かばんが 好きですが、高いです。それで 安い 青い かばんを 買いました。", "안나 씨는 가게에 갔습니다. 빨간 가방이 마음에 들지만 비쌉니다. 그래서 싼 파란 가방을 샀습니다.", "안나 씨는 왜 파란 가방을 샀나요?", ["싸서", "예뻐서", "커서"], "アンナさんは みせへ いきました。あかい かばんが すきですが、たかいです。それで やすい あおい かばんを かいました。")),
+      U("날씨", [
+        X("晴れ", "はれ", "하레", "맑음", "今日は 晴れです。", "きょうは はれです。", "오늘은 맑습니다."),
+        X("雨", "あめ", "아메", "비", "明日は 雨でしょう。", "あしたは あめでしょう。", "내일은 비가 올 것입니다."),
+        X("寒い", "さむい", "사무이", "춥다", "冬は とても 寒いです。", "ふゆは とても さむいです。", "겨울은 매우 춥습니다."),
+        X("暑い", "あつい", "아쓰이", "덥다", "夏の 韓国は 暑いです。", "なつの かんこくは あついです。", "여름의 한국은 덥습니다."),
+        X("かさ", "かさ", "가사", "우산", "かさを 持って 行って ください。", "かさを もって いって ください。", "우산을 가지고 가세요.")
+      ], P("今日は 雨で 寒いです。ジェニーさんは かさを 持って、コートを 着ました。", "오늘은 비가 오고 춥습니다. 제니 씨는 우산을 들고 코트를 입었습니다.", "제니 씨는 무엇을 가져갔나요?", ["우산", "모자", "책"], "きょうは あめで さむいです。ジェニーさんは かさを もって、コートを きました。"))
+    ],
+    [
+      U("여행", [
+        X("予約", "よやく", "요야쿠", "예약", "ホテルを ネットで 予約しました。", "ホテルを ネットで よやくしました。", "호텔을 인터넷으로 예약했습니다."),
+        X("荷物", "にもつ", "니모쓰", "짐", "荷物が とても 重いです。", "にもつが とても おもいです。", "짐이 매우 무겁습니다."),
+        X("目的地", "もくてきち", "모쿠테키치", "목적지", "最終の 目的地は 釜山です。", "さいしゅうの もくてきちは プサンです。", "최종 목적지는 부산입니다."),
+        X("遅れ", "おくれ", "오쿠레", "지연", "飛行機に 二時間の 遅れが 出ました。", "ひこうきに にじかんの おくれが でました。", "비행기가 2시간 지연되었습니다."),
+        X("到着", "とうちゃく", "도차쿠", "도착", "ホテルに 夜遅く 到着しました。", "ホテルに よるおそく とうちゃくしました。", "호텔에 밤늦게 도착했습니다.")
+      ], P("飛行機が 遅れたので、ホテルに 遅く 着きました。でも、予約は 残っていました。", "비행기가 늦어져서 호텔에 늦게 도착했습니다. 하지만 예약은 남아 있었습니다.", "호텔에 늦게 도착한 이유는 무엇인가요?", ["비행기 지연", "교통 체증", "길을 잃어서"])),
+      U("직장", [
+        X("会議", "かいぎ", "가이기", "회의", "十時から 会議が あります。", "じゅうじから かいぎが あります。", "10시부터 회의가 있습니다."),
+        X("締め切り", "しめきり", "시메키리", "마감", "締め切りは 来週の 金曜日です。", "しめきりは らいしゅうの きんようびです。", "마감은 다음 주 금요일입니다."),
+        X("同僚", "どうりょう", "도료", "동료", "同僚が 資料作りを 手伝って くれました。", "どうりょうが しりょうづくりを てつだって くれました。", "동료가 자료 작성을 도와주었습니다."),
+        X("予定", "よてい", "요테이", "일정", "予定を もう一度 確認して ください。", "よていを もういちど かくにんして ください。", "일정을 한 번 더 확인해 주세요."),
+        X("改善", "かいぜん", "가이젠", "개선", "サービスの 改善が 必要です。", "サービスの かいぜんが ひつようです。", "서비스 개선이 필요합니다.")
+      ], P("毎週月曜日に チームで 会議を します。予定を 確認して、締め切りまでに 仕事を 改善します。", "매주 월요일에 팀이 회의를 합니다. 일정을 확인하고 마감까지 업무를 개선합니다.", "월요일마다 무엇을 하나요?", ["회의", "여행", "시험"])),
+      U("건강", [
+        X("運動", "うんどう", "운도", "운동", "毎日 運動すると 健康に いいです。", "まいにち うんどうすると けんこうに いいです。", "매일 운동하면 건강에 좋습니다."),
+        X("頭痛", "ずつう", "즈쓰", "두통", "ひどい 頭痛が します。", "ひどい ずつうが します。", "심한 두통이 있습니다."),
+        X("薬", "くすり", "구스리", "약", "食後に この 薬を 飲んで ください。", "しょくごに この くすりを のんで ください。", "식후에 이 약을 드세요."),
+        X("習慣", "しゅうかん", "슈칸", "습관", "早く 寝るのは いい 習慣です。", "はやく ねるのは いい しゅうかんです。", "일찍 자는 것은 좋은 습관입니다."),
+        X("回復", "かいふく", "가이후쿠", "회복", "彼は インフルエンザから 早く 回復しました。", "かれは インフルエンザから はやく かいふくしました。", "그는 독감에서 빨리 회복했습니다.")
+      ], P("サムさんは 二日間 頭痛が ありました。薬を 飲んで 休んだので、今は 回復して います。また 運動を 始める つもりです。", "샘 씨는 이틀 동안 두통이 있었습니다. 약을 먹고 쉬어서 지금은 회복 중입니다. 다시 운동을 시작할 생각입니다.", "샘 씨는 지금 어떤 상태인가요?", ["회복 중이다", "더 나빠졌다", "입원했다"]))
+    ],
+    [
+      U("사회와 환경", [
+        X("持続可能", "じぞくかのう", "지조쿠카노", "지속 가능", "持続可能な エネルギーが 必要です。", "じぞくかのうな エネルギーが ひつようです。", "지속 가능한 에너지가 필요합니다."),
+        X("汚染", "おせん", "오센", "오염", "大気汚染は 健康に 影響します。", "たいきおせんは けんこうに えいきょうします。", "대기 오염은 건강에 영향을 줍니다."),
+        X("規制", "きせい", "기세이", "규제", "新しい 規制が 環境を 守ります。", "あたらしい きせいが かんきょうを まもります。", "새로운 규제가 환경을 지킵니다."),
+        X("消費", "しょうひ", "쇼히", "소비", "人々は 必要以上に 消費して います。", "ひとびとは ひつよういじょうに しょうひして います。", "사람들은 필요 이상으로 소비하고 있습니다."),
+        X("深刻", "しんこく", "신코쿠", "심각", "気候変動は 深刻な 問題です。", "きこうへんどうは しんこくな もんだいです。", "기후 변동은 심각한 문제입니다.")
+      ], P("政府は 汚染を 減らすため、規制を 強めて います。しかし、専門家は 個人も 消費の しかたを 変える べきだと 言います。", "정부는 오염을 줄이기 위해 규제를 강화하고 있습니다. 그러나 전문가는 개인도 소비 방식을 바꿔야 한다고 말합니다.", "전문가의 주장은 무엇인가요?", ["개인도 소비 방식을 바꿔야 한다", "정부만 노력하면 된다", "오염은 줄지 않는다"])),
+      U("경제", [
+        X("物価", "ぶっか", "북카", "물가", "物価の 上昇で 生活費が 増えました。", "ぶっかの じょうしょうで せいかつひが ふえました。", "물가 상승으로 생활비가 늘었습니다."),
+        X("投資", "とうし", "도시", "투자", "教育は よい 投資です。", "きょういくは よい とうしです。", "교육은 좋은 투자입니다."),
+        X("予算", "よさん", "요산", "예산", "予算の 範囲内で 行います。", "よさんの はんいないで おこないます。", "예산 범위 안에서 진행합니다."),
+        X("利益", "りえき", "리에키", "이익", "会社は 大きな 利益を 出しました。", "かいしゃは おおきな りえきを だしました。", "회사는 큰 이익을 냈습니다."),
+        X("競争力", "きょうそうりょく", "교소료쿠", "경쟁력", "この 製品は 競争力が あります。", "この せいひんは きょうそうりょくが あります。", "이 제품은 경쟁력이 있습니다.")
+      ], P("会社の 利益は 増えましたが、物価が 上がって 費用も 増えました。部長は 予算を 減らし、競争力の ある 製品に 集中する ことに しました。", "회사의 이익은 늘었지만 물가가 올라 비용도 늘었습니다. 부장은 예산을 줄이고 경쟁력 있는 제품에 집중하기로 했습니다.", "부장은 무엇을 결정했나요?", ["예산을 줄이고 경쟁력 있는 제품에 집중", "직원을 늘리기", "가격을 올리기"])),
+      U("학문과 의견", [
+        X("主張", "しゅちょう", "슈초", "주장", "彼女の 主張は とても 説得力が ありました。", "かのじょの しゅちょうは とても せっとくりょくが ありました。", "그녀의 주장은 매우 설득력이 있었습니다."),
+        X("証拠", "しょうこ", "쇼코", "증거", "この 説には 強い 証拠が あります。", "この せつには つよい しょうこが あります。", "이 설에는 강력한 증거가 있습니다."),
+        X("結論", "けつろん", "게쓰론", "결론", "結論として、この 方法は 有効です。", "けつろんとして、この ほうほうは ゆうこうです。", "결론적으로 이 방법은 유효합니다."),
+        X("意見", "いけん", "이켄", "의견", "私の 意見では、その 計画は 現実的です。", "わたしの いけんでは、その けいかくは げんじつてきです。", "제 의견으로는 그 계획은 현실적입니다."),
+        X("批判的", "ひはんてき", "히한테키", "비판적", "研究では 批判的な 思考が 大切です。", "けんきゅうでは ひはんてきな しこうが たいせつです。", "연구에서는 비판적인 사고가 중요합니다.")
+      ], P("研究者は 主張を 支える 強い 証拠を 示しました。批判する 人も いましたが、ほとんどの 人は 結論が 妥当だと 認めました。", "연구자는 주장을 뒷받침하는 강력한 증거를 제시했습니다. 비판하는 사람도 있었지만 대부분은 결론이 타당하다고 인정했습니다.", "대부분의 사람들은 결론을 어떻게 보았나요?", ["타당하다고 인정했다", "반대했다", "관심이 없었다"]))
+    ]
+  ],
+
+  zh: [
+    [
+      U("인사와 소개", [
+        X("你好", "nǐ hǎo", "니하오", "안녕하세요", "你好，我叫王明。", "Nǐ hǎo, wǒ jiào Wáng Míng.", "안녕하세요, 저는 왕밍입니다."),
+        X("谢谢", "xièxie", "씨에씨에", "고마워요", "谢谢你的帮助。", "Xièxie nǐ de bāngzhù.", "도와주셔서 감사합니다."),
+        X("再见", "zàijiàn", "짜이젠", "안녕히 가세요", "再见，明天见。", "Zàijiàn, míngtiān jiàn.", "안녕히 가세요, 내일 봐요."),
+        X("对不起", "duìbuqǐ", "뚜이부치", "미안합니다", "对不起，我迟到了。", "Duìbuqǐ, wǒ chídào le.", "죄송합니다, 늦었어요."),
+        X("请", "qǐng", "칭", "~해 주세요", "请坐。", "Qǐng zuò.", "앉으세요.")
+      ], P("我叫美娜。我是学生。我喜欢音乐。", "저는 미나입니다. 저는 학생입니다. 저는 음악을 좋아합니다.", "미나는 누구인가요?", ["학생", "선생님", "의사"], "Wǒ jiào Měinà. Wǒ shì xuésheng. Wǒ xǐhuan yīnyuè.")),
+      U("음식", [
+        X("水", "shuǐ", "수이", "물", "我想喝水。", "Wǒ xiǎng hē shuǐ.", "물을 마시고 싶어요."),
+        X("面包", "miànbāo", "미엔바오", "빵", "她在商店买面包。", "Tā zài shāngdiàn mǎi miànbāo.", "그녀는 가게에서 빵을 삽니다."),
+        X("苹果", "píngguǒ", "핑궈", "사과", "我每天吃一个苹果。", "Wǒ měitiān chī yí ge píngguǒ.", "저는 매일 사과 하나를 먹습니다."),
+        X("牛奶", "niúnǎi", "니우나이", "우유", "我早上喝牛奶。", "Wǒ zǎoshang hē niúnǎi.", "저는 아침에 우유를 마십니다."),
+        X("米饭", "mǐfàn", "미판", "밥", "晚饭我们吃米饭。", "Wǎnfàn wǒmen chī mǐfàn.", "저녁에 우리는 밥을 먹습니다.")
+      ], P("我早上七点吃早饭。我吃面包，喝牛奶。", "저는 아침 7시에 아침밥을 먹습니다. 빵을 먹고 우유를 마십니다.", "아침에 무엇을 마시나요?", ["우유", "물", "주스"], "Wǒ zǎoshang qī diǎn chī zǎofàn. Wǒ chī miànbāo, hē niúnǎi.")),
+      U("가족", [
+        X("妈妈", "māma", "마마", "엄마", "我妈妈是老师。", "Wǒ māma shì lǎoshī.", "우리 엄마는 선생님입니다."),
+        X("爸爸", "bàba", "바바", "아빠", "我爸爸在银行工作。", "Wǒ bàba zài yínháng gōngzuò.", "우리 아빠는 은행에서 일합니다."),
+        X("哥哥", "gēge", "꺼거", "형·오빠", "我哥哥踢足球。", "Wǒ gēge tī zúqiú.", "우리 형은 축구를 합니다."),
+        X("姐姐", "jiějie", "지에지에", "누나·언니", "我姐姐喜欢看书。", "Wǒ jiějie xǐhuan kàn shū.", "우리 언니는 책 읽기를 좋아합니다."),
+        X("朋友", "péngyou", "펑여우", "친구", "他是我的好朋友。", "Tā shì wǒ de hǎo péngyou.", "그는 나의 좋은 친구입니다.")
+      ], P("这是我的家。我有妈妈、爸爸和一个姐姐。我们住在首尔。", "여기는 우리 집입니다. 엄마, 아빠, 언니 한 명이 있습니다. 우리는 서울에 삽니다.", "가족은 어디에 사나요?", ["서울", "베이징", "도쿄"], "Zhè shì wǒ de jiā. Wǒ yǒu māma, bàba hé yí ge jiějie. Wǒmen zhù zài Shǒu'ěr."))
+    ],
+    [
+      U("일상", [
+        X("起床", "qǐchuáng", "치촹", "일어나다", "我每天六点起床。", "Wǒ měitiān liù diǎn qǐchuáng.", "저는 매일 6시에 일어납니다."),
+        X("学校", "xuéxiào", "쉐샤오", "학교", "她走路去学校。", "Tā zǒulù qù xuéxiào.", "그녀는 걸어서 학교에 갑니다."),
+        X("作业", "zuòyè", "쭤예", "숙제", "我吃饭前做作业。", "Wǒ chīfàn qián zuò zuòyè.", "저는 식사 전에 숙제를 합니다."),
+        X("早饭", "zǎofàn", "짜오판", "아침밥", "我们一起吃早饭。", "Wǒmen yìqǐ chī zǎofàn.", "우리는 함께 아침밥을 먹습니다."),
+        X("睡觉", "shuìjiào", "수이자오", "자다", "我晚上十一点睡觉。", "Wǒ wǎnshang shíyī diǎn shuìjiào.", "저는 밤 11시에 잡니다.")
+      ], P("小明六点起床。他和朋友走路去学校。放学后他做作业。", "샤오밍은 6시에 일어납니다. 그는 친구와 걸어서 학교에 갑니다. 수업이 끝난 뒤 숙제를 합니다.", "샤오밍은 학교에 어떻게 가나요?", ["걸어서", "버스로", "자전거로"], "Xiǎo Míng liù diǎn qǐchuáng. Tā hé péngyou zǒulù qù xuéxiào. Fàngxué hòu tā zuò zuòyè.")),
+      U("쇼핑", [
+        X("价格", "jiàgé", "쟈거", "가격", "这件衬衫的价格是多少？", "Zhè jiàn chènshān de jiàgé shì duōshao?", "이 셔츠의 가격은 얼마입니까?"),
+        X("便宜", "piányi", "피엔이", "싸다", "这个包很便宜。", "Zhège bāo hěn piányi.", "이 가방은 매우 쌉니다."),
+        X("贵", "guì", "구이", "비싸다", "那块手表太贵了。", "Nà kuài shǒubiǎo tài guì le.", "저 시계는 너무 비쌉니다."),
+        X("买", "mǎi", "마이", "사다", "我想买新鞋。", "Wǒ xiǎng mǎi xīn xié.", "저는 새 신발을 사고 싶습니다."),
+        X("大", "dà", "따", "크다", "有大一点儿的吗？", "Yǒu dà yìdiǎnr de ma?", "조금 더 큰 것이 있습니까?")
+      ], P("安娜去商店。她喜欢红色的包，可是很贵。所以她买了便宜的蓝色包。", "안나는 가게에 갑니다. 그녀는 빨간 가방이 마음에 들지만 비쌉니다. 그래서 싼 파란 가방을 샀습니다.", "안나는 왜 파란 가방을 샀나요?", ["싸서", "예뻐서", "커서"], "Ānnà qù shāngdiàn. Tā xǐhuan hóngsè de bāo, kěshì hěn guì. Suǒyǐ tā mǎi le piányi de lánsè bāo.")),
+      U("날씨", [
+        X("晴天", "qíngtiān", "칭톈", "맑은 날", "今天是晴天。", "Jīntiān shì qíngtiān.", "오늘은 맑은 날입니다."),
+        X("下雨", "xiàyǔ", "샤위", "비가 오다", "明天会下雨。", "Míngtiān huì xiàyǔ.", "내일은 비가 올 것입니다."),
+        X("冷", "lěng", "렁", "춥다", "冬天很冷。", "Dōngtiān hěn lěng.", "겨울은 매우 춥습니다."),
+        X("热", "rè", "러", "덥다", "韩国的夏天很热。", "Hánguó de xiàtiān hěn rè.", "한국의 여름은 덥습니다."),
+        X("雨伞", "yǔsǎn", "위싼", "우산", "请带雨伞去。", "Qǐng dài yǔsǎn qù.", "우산을 가지고 가세요.")
+      ], P("今天下雨，很冷。珍妮带着雨伞，还穿了外套。", "오늘은 비가 오고 춥습니다. 제니는 우산을 들고 외투도 입었습니다.", "제니는 무엇을 가져갔나요?", ["우산", "모자", "책"], "Jīntiān xiàyǔ, hěn lěng. Zhēnní dàizhe yǔsǎn, hái chuān le wàitào."))
+    ],
+    [
+      U("여행", [
+        X("预订", "yùdìng", "위딩", "예약하다", "我在网上预订了酒店。", "Wǒ zài wǎngshàng yùdìng le jiǔdiàn.", "저는 인터넷으로 호텔을 예약했습니다."),
+        X("行李", "xíngli", "싱리", "짐", "我的行李很重。", "Wǒ de xíngli hěn zhòng.", "제 짐은 매우 무겁습니다."),
+        X("目的地", "mùdìdì", "무디디", "목적지", "我们的最终目的地是釜山。", "Wǒmen de zuìzhōng mùdìdì shì Fǔshān.", "우리의 최종 목적지는 부산입니다."),
+        X("延误", "yánwù", "옌우", "지연되다", "航班延误了两个小时。", "Hángbān yánwù le liǎng ge xiǎoshí.", "항공편이 2시간 지연되었습니다."),
+        X("到达", "dàodá", "따오다", "도착하다", "我们很晚才到达酒店。", "Wǒmen hěn wǎn cái dàodá jiǔdiàn.", "우리는 매우 늦게야 호텔에 도착했습니다.")
+      ], P("因为航班延误，我们很晚才到达酒店。幸好预订还在。", "항공편이 지연되어 우리는 매우 늦게 호텔에 도착했습니다. 다행히 예약은 그대로 있었습니다.", "호텔에 늦게 도착한 이유는 무엇인가요?", ["항공편 지연", "교통 체증", "길을 잃어서"])),
+      U("직장", [
+        X("会议", "huìyì", "후이이", "회의", "我们十点有一个会议。", "Wǒmen shí diǎn yǒu yí ge huìyì.", "우리는 10시에 회의가 있습니다."),
+        X("截止日期", "jiézhǐ rìqī", "지에즈르치", "마감일", "截止日期是下周五。", "Jiézhǐ rìqī shì xià zhōu wǔ.", "마감일은 다음 주 금요일입니다."),
+        X("同事", "tóngshì", "퉁스", "동료", "同事帮我写了报告。", "Tóngshì bāng wǒ xiě le bàogào.", "동료가 보고서 작성을 도와주었습니다."),
+        X("安排", "ānpái", "안파이", "일정·배정", "请再确认一下安排。", "Qǐng zài quèrèn yíxià ānpái.", "일정을 다시 확인해 주세요."),
+        X("改进", "gǎijìn", "가이진", "개선하다", "我们需要改进服务。", "Wǒmen xūyào gǎijìn fúwù.", "우리는 서비스를 개선해야 합니다.")
+      ], P("我们团队每周一开会，确认安排，并在截止日期前改进工作。", "우리 팀은 매주 월요일에 회의를 하고 일정을 확인하며 마감일 전에 업무를 개선합니다.", "월요일마다 무엇을 하나요?", ["회의", "여행", "시험"])),
+      U("건강", [
+        X("锻炼", "duànliàn", "돤롄", "운동하다", "经常锻炼对身体好。", "Jīngcháng duànliàn duì shēntǐ hǎo.", "자주 운동하면 몸에 좋습니다."),
+        X("头疼", "tóuténg", "터우텅", "머리가 아프다", "我头疼得很厉害。", "Wǒ tóuténg de hěn lìhai.", "저는 머리가 심하게 아픕니다."),
+        X("药", "yào", "야오", "약", "饭后吃这个药。", "Fàn hòu chī zhège yào.", "식후에 이 약을 드세요."),
+        X("习惯", "xíguàn", "시관", "습관", "早睡是个好习惯。", "Zǎo shuì shì ge hǎo xíguàn.", "일찍 자는 것은 좋은 습관입니다."),
+        X("恢复", "huīfù", "후이푸", "회복하다", "他很快就恢复了。", "Tā hěn kuài jiù huīfù le.", "그는 곧 회복했습니다.")
+      ], P("萨姆头疼了两天。他吃了药，也休息了。现在他正在恢复，打算重新开始锻炼。", "샘은 이틀 동안 머리가 아팠습니다. 약을 먹고 쉬기도 했습니다. 지금은 회복 중이며 다시 운동을 시작할 계획입니다.", "샘은 지금 어떤 상태인가요?", ["회복 중이다", "더 나빠졌다", "입원했다"]))
+    ],
+    [
+      U("사회와 환경", [
+        X("可持续", "kěchíxù", "커츠쉬", "지속 가능한", "我们需要可持续的能源。", "Wǒmen xūyào kěchíxù de néngyuán.", "우리는 지속 가능한 에너지가 필요합니다."),
+        X("污染", "wūrǎn", "우란", "오염", "空气污染影响健康。", "Kōngqì wūrǎn yǐngxiǎng jiànkāng.", "대기 오염은 건강에 영향을 줍니다."),
+        X("法规", "fǎguī", "파구이", "법규·규제", "新法规保护环境。", "Xīn fǎguī bǎohù huánjìng.", "새 법규가 환경을 보호합니다."),
+        X("消费", "xiāofèi", "샤오페이", "소비하다", "人们消费的东西超过了需要。", "Rénmen xiāofèi de dōngxi chāoguò le xūyào.", "사람들은 필요보다 많이 소비합니다."),
+        X("严峻", "yánjùn", "옌쥔", "심각한·엄중한", "气候变化是一个严峻的问题。", "Qìhòu biànhuà shì yí ge yánjùn de wèntí.", "기후 변화는 심각한 문제입니다.")
+      ], P("政府正在出台更严格的法规来减少污染。但专家认为，个人也应该改变消费方式。", "정부는 오염을 줄이기 위해 더 엄격한 법규를 내놓고 있습니다. 그러나 전문가들은 개인도 소비 방식을 바꿔야 한다고 봅니다.", "전문가들의 주장은 무엇인가요?", ["개인도 소비 방식을 바꿔야 한다", "정부만 노력하면 된다", "오염은 줄지 않는다"])),
+      U("경제", [
+        X("通货膨胀", "tōnghuò péngzhàng", "퉁훠펑장", "인플레이션", "通货膨胀提高了生活成本。", "Tōnghuò péngzhàng tígāo le shēnghuó chéngběn.", "인플레이션이 생활비를 높였습니다."),
+        X("投资", "tóuzī", "터우쯔", "투자", "教育是一种好的投资。", "Jiàoyù shì yì zhǒng hǎo de tóuzī.", "교육은 좋은 투자입니다."),
+        X("预算", "yùsuàn", "위쑤안", "예산", "我们必须控制在预算之内。", "Wǒmen bìxū kòngzhì zài yùsuàn zhī nèi.", "우리는 예산 안에서 지출해야 합니다."),
+        X("利润", "lìrùn", "리룬", "이윤", "公司获得了很大的利润。", "Gōngsī huòdé le hěn dà de lìrùn.", "회사는 큰 이윤을 얻었습니다."),
+        X("竞争力", "jìngzhēnglì", "징쩡리", "경쟁력", "这个产品很有竞争力。", "Zhège chǎnpǐn hěn yǒu jìngzhēnglì.", "이 제품은 경쟁력이 있습니다.")
+      ], P("公司的利润增加了，但通货膨胀让成本也上升了。经理决定削减预算，专注于有竞争力的产品。", "회사의 이윤은 늘었지만 인플레이션으로 비용도 올랐습니다. 매니저는 예산을 줄이고 경쟁력 있는 제품에 집중하기로 했습니다.", "매니저는 무엇을 결정했나요?", ["예산을 줄이고 경쟁력 있는 제품에 집중", "직원을 늘리기", "가격을 올리기"])),
+      U("학문과 의견", [
+        X("观点", "guāndiǎn", "관디엔", "관점·주장", "她的观点很有说服力。", "Tā de guāndiǎn hěn yǒu shuōfúlì.", "그녀의 주장은 설득력이 있습니다."),
+        X("证据", "zhèngjù", "쩡쥐", "증거", "这个理论有充分的证据。", "Zhège lǐlùn yǒu chōngfèn de zhèngjù.", "이 이론에는 충분한 증거가 있습니다."),
+        X("得出结论", "déchū jiélùn", "더추지에룬", "결론을 내다", "我们可以得出结论：这个方法有效。", "Wǒmen kěyǐ déchū jiélùn: zhège fāngfǎ yǒuxiào.", "우리는 이 방법이 효과적이라는 결론을 내릴 수 있습니다."),
+        X("意见", "yìjiàn", "이지엔", "의견", "依我的意见，这个计划很实际。", "Yī wǒ de yìjiàn, zhège jìhuà hěn shíjì.", "제 의견으로는 이 계획은 현실적입니다."),
+        X("批判性", "pīpànxìng", "피판싱", "비판적인", "批判性思维在研究中很重要。", "Pīpànxìng sīwéi zài yánjiū zhōng hěn zhòngyào.", "비판적 사고는 연구에서 중요합니다.")
+      ], P("研究者提出了有力的证据来支持她的观点。有人持怀疑态度，但大多数人认为结论是合理的。", "연구자는 그녀의 주장을 뒷받침하는 강력한 증거를 제시했습니다. 회의적인 사람도 있었지만 대부분은 결론이 합리적이라고 보았습니다.", "대부분의 사람들은 결론을 어떻게 보았나요?", ["합리적이라고 보았다", "반대했다", "관심이 없었다"]))
+    ]
+  ]
+};
+
+const WL_META = {
+  langs: {
+    en: { name: "영어", tts: "en-US", stt: "en-US", exam: ["TOEIC 300점대", "TOEIC 500점대", "TOEIC 700점대", "TOEIC 850점대"] },
+    ja: { name: "일본어", tts: "ja-JP", stt: "ja-JP", exam: ["JLPT N5", "JLPT N4", "JLPT N3", "JLPT N2"] },
+    zh: { name: "중국어", tts: "zh-CN", stt: "zh-CN", exam: ["HSK 1급", "HSK 2급", "HSK 3급", "HSK 4급 이상"] }
+  },
+  levels: ["초보자", "초급", "중급", "고급"],
+  areas: { vocab: "어휘", reading: "읽기", listening: "듣기", writing: "쓰기", speaking: "말하기" },
+  // 2026-12 ~ 2027 한국 공휴일(대체공휴일 포함). 공식 확인 후 설정에서 수정하세요.
+  holidays: [
+    "2026-12-25",
+    "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09", "2027-03-01",
+    "2027-05-01", "2027-05-03", "2027-05-05", "2027-05-13", "2027-06-06",
+    "2027-07-17", "2027-07-19", "2027-08-15", "2027-08-16",
+    "2027-09-14", "2027-09-15", "2027-09-16", "2027-10-03", "2027-10-04",
+    "2027-10-09", "2027-10-11", "2027-12-25", "2027-12-27"
+  ]
+};
+/* ===== 공통 유틸 ===== */
+const L = WL_META.langs, LV = WL_META.levels, AR = WL_META.areas, AREAS = Object.keys(AR);
+const KEY = "wl_state_v1", INTERVALS = [1, 3, 7, 14, 30];
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const rnd = a => a[Math.floor(Math.random() * a.length)];
+const pad = n => String(n).padStart(2, "0");
+const dkey = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+const parseKey = k => { const [y, m, d] = k.split("-").map(Number); return new Date(y, m - 1, d); };
+const today = () => dkey(new Date());
+const addDays = (k, n) => { const d = parseKey(k); d.setDate(d.getDate() + n); return dkey(d); };
+const weekStart = k => { const d = parseKey(k); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return dkey(d); };
+const DOW = ["일", "월", "화", "수", "목", "금", "토"];
+const fmtDate = k => { const d = parseKey(k); return (d.getMonth() + 1) + "월 " + d.getDate() + "일 (" + DOW[d.getDay()] + ")"; };
+const mean = a => a.length ? Math.round(a.reduce((x, y) => x + y, 0) / a.length) : 0;
+const grade = s => s >= 90 ? "A" : s >= 80 ? "B" : s >= 70 ? "C" : s >= 60 ? "D" : "F";
+
+/* ===== 상태 저장 ===== */
+function defaultState() {
+  return {
+    v: 1, profile: null,
+    settings: { dark: !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches), notify: false, notifyTime: "20:00", furigana: true, pinyin: true, hangul: true, rate: 0.9, apiKey: "", hAdd: [], hDel: [] },
+    langs: {}, log: {}, tests: [], review: {}, xp: 0, badges: {}, stats: { ok: 0, all: 0, reviewOk: 0 }, lessons: 0, weekly: { k: "", reviewOk: 0 }, packs: [], notified: ""
+  };
+}
+function loadState() {
+  const d = defaultState();
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) { const o = JSON.parse(raw); return Object.assign(d, o, { settings: Object.assign(d.settings, o.settings || {}), stats: Object.assign(d.stats, o.stats || {}) }); }
+  } catch (e) { /* 손상된 데이터는 무시 */ }
+  return d;
+}
+let S = loadState();
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast("저장에 실패했어요. 브라우저 저장 공간을 확인해 주세요."); } }
+function hashPin(name, pin) { let h1 = 0xdeadbeef, h2 = 0x41c6ce57; const s = name + ":" + pin + ":wl"; for (let i = 0; i < s.length; i++) { const c = s.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); } h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909); h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909); return String(4294967296 * (2097151 & h2) + (h1 >>> 0)); }
+
+/* ===== 달력·공휴일·출석 ===== */
+function holidaySet() { const s = new Set(WL_META.holidays.concat(S.settings.hAdd)); S.settings.hDel.forEach(k => s.delete(k)); return s; }
+function isRest(k) { const w = parseKey(k).getDay(); return w === 0 || w === 6 || holidaySet().has(k); }
+function markAttend() { const t = today(); const e = S.log[t] || (S.log[t] = {}); e.attended = true; save(); }
+function attended(k) { return !!(S.log[k] && S.log[k].attended); }
+function doneOn(k, l) { const e = S.log[k]; return !!(e && e.done && e.done[l]); }
+let cache = {};
+function credits(l, wk) {
+  const ck = l + "|" + wk; if (cache[ck]) return cache[ck];
+  const st = S.langs[l].start, t = today(); const missed = []; let makeups = 0;
+  for (let i = 0; i < 7; i++) { const k = addDays(wk, i); if (k < st || k > t) continue; if (isRest(k)) { if (doneOn(k, l)) makeups++; } else if (k < t && !doneOn(k, l)) missed.push(k); }
+  return (cache[ck] = { missed, makeups, credited: new Set(missed.slice(0, makeups)), open: Math.max(0, missed.length - makeups) });
+}
+function status(k, l) {
+  const t = today(); if (k < S.langs[l].start) return "none"; if (k > t) return "future";
+  const d = doneOn(k, l);
+  if (isRest(k)) return d ? "extra" : "rest";
+  if (d) return "done"; if (k === t) return "pending";
+  return credits(l, weekStart(k)).credited.has(k) ? "credited" : "missed";
+}
+function rangeStats(l, from, to) {
+  const t = today(); const a = from > S.langs[l].start ? from : S.langs[l].start, b = to < t ? to : t; let req = 0, att = 0, comp = 0;
+  for (let k = a; k <= b; k = addDays(k, 1)) { if (isRest(k)) continue; req++; if (attended(k)) att++; const s = status(k, l); if (s === "done" || s === "credited") comp++; }
+  return { req, att, comp, attRate: req ? Math.round(att / req * 100) : 0, compRate: req ? Math.round(comp / req * 100) : 0 };
+}
+function streak(l) {
+  const st = S.langs[l].start; let n = 0;
+  for (let k = today(); k >= st; k = addDays(k, -1)) {
+    const s = status(k, l);
+    if (s === "extra") n++; else if (s === "rest") continue; else if (s === "done" || s === "credited") n++; else if (s === "pending") continue; else break;
+  }
+  return n;
+}
+function todayDone(l) { return doneOn(today(), l); }
+function openMakeup(l) { return credits(l, weekStart(today()), true).open; }
+
+/* ===== 콘텐츠 접근 ===== */
+function levelUnits(lang, lvl) {
+  const base = (WL_CONTENT[lang] || [])[lvl] || [];
+  const extra = S.packs.filter(p => p.lang === lang && p.level === lvl).reduce((a, p) => a.concat(p.units), []);
+  return base.concat(extra);
+}
+function wordsOf(lang, lvl) { const out = []; levelUnits(lang, lvl).forEach((u, ui) => u.w.forEach((w, wi) => out.push({ id: lang + ":" + lvl + ":" + ui + ":" + wi, w, ui, wi }))); return out; }
+function wordById(id) { const [lang, lvl, ui, wi] = id.split(":"); const u = levelUnits(lang, +lvl)[+ui]; return u && u.w[+wi] ? { id, w: u.w[+wi], lang, lvl: +lvl } : null; }
+function pool(lang, lvl) { let p = wordsOf(lang, lvl); if (p.length < 8) { if (lvl > 0) p = p.concat(wordsOf(lang, lvl - 1)); if (p.length < 8 && lvl < 3) p = p.concat(wordsOf(lang, lvl + 1)); } return p; }
+
+/* ===== 표기(후리가나·병음·한글발음) ===== */
+function wordBig(lang, wd) {
+  let h = esc(wd.w);
+  if (lang === "ja" && S.settings.furigana && wd.r && wd.r !== wd.w) h = "<ruby>" + esc(wd.w) + "<rt>" + esc(wd.r) + "</rt></ruby>";
+  if (lang === "zh" && S.settings.pinyin && wd.r) h = "<ruby>" + esc(wd.w) + "<rt>" + esc(wd.r) + "</rt></ruby>";
+  if (lang !== "en" && S.settings.hangul && wd.h) h += '<span class="hg">' + esc(wd.h) + "</span>";
+  return h;
+}
+function sentHtml(lang, wd) {
+  let h = '<div class="sent">' + esc(wd.e) + "</div>";
+  if (wd.er && ((lang === "ja" && S.settings.furigana) || (lang === "zh" && S.settings.pinyin))) h += '<div class="rd">' + esc(wd.er) + "</div>";
+  return h;
+}
+const ttsWord = (lang, wd) => lang === "ja" ? (wd.r || wd.w) : wd.w;
+
+/* ===== 문제 생성 ===== */
+function distract(arr, get, correct, n = 3) {
+  const seen = new Set([correct]), out = [];
+  shuffle(arr).forEach(x => { const v = get(x); if (!seen.has(v) && out.length < n) { seen.add(v); out.push(v); } });
+  return out;
+}
+function mkMcq(base, correct, wrongs) { const opts = shuffle([correct].concat(wrongs)); return Object.assign(base, { type: "mcq", opts, ans: opts.indexOf(correct), correctText: correct }); }
+function qVocab(lang, lvl, W, dir) {
+  const P = pool(lang, lvl);
+  if (dir === 0) return mkMcq({ area: "vocab", ref: { area: "vocab", id: W.id }, prompt: "다음 단어의 뜻은 무엇일까요?", big: wordBig(lang, W.w), audio: { text: ttsWord(lang, W.w), lang: L[lang].tts } }, W.w.k, distract(P, x => x.w.k, W.w.k));
+  return mkMcq({ area: "vocab", ref: { area: "vocab", id: W.id }, prompt: "뜻에 맞는 단어를 고르세요.", big: esc(W.w.k) }, W.w.w, distract(P, x => x.w.w, W.w.w));
+}
+function qReadSent(lang, lvl, W) {
+  return mkMcq({ area: "reading", ref: { area: "reading", id: W.id }, prompt: "다음 문장의 뜻은 무엇일까요?", sent: sentHtml(lang, W.w) }, W.w.ek, distract(pool(lang, lvl), x => x.w.ek, W.w.ek));
+}
+function qPassage(lang, lvl, ui) {
+  const u = levelUnits(lang, lvl)[ui]; const p = u.p;
+  return mkMcq({ area: "reading", ref: { area: "reading", id: lang + ":" + lvl + ":" + ui + ":p" }, prompt: p.q, ctx: { t: p.t, r: p.r, k: p.k }, audio: { text: p.t, lang: L[lang].tts } }, p.o[0], p.o.slice(1));
+}
+function qListenWord(lang, lvl, W) {
+  return mkMcq({ area: "listening", ref: { area: "listening", id: W.id }, prompt: "소리를 듣고 알맞은 단어를 고르세요.", audio: { text: ttsWord(lang, W.w), lang: L[lang].tts }, autoplay: true }, W.w.w, distract(pool(lang, lvl), x => x.w.w, W.w.w));
+}
+function qListenSent(lang, lvl, W) {
+  return mkMcq({ area: "listening", ref: { area: "listening", id: W.id }, prompt: "문장을 듣고 뜻을 고르세요.", audio: { text: W.w.e, lang: L[lang].tts }, autoplay: true }, W.w.ek, distract(pool(lang, lvl), x => x.w.ek, W.w.ek));
+}
+const stripTone = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[\s'’]/g, "").toLowerCase();
+const normAns = s => String(s).trim().toLowerCase().replace(/\s+/g, " ");
+function qWrite(lang, lvl, W) {
+  const wd = W.w, acc = [wd.w]; if (lang === "ja" && wd.r) acc.push(wd.r); if (lang === "zh" && wd.r) acc.push(wd.r);
+  let hint = ""; const idx = wd.e.toLowerCase().indexOf(wd.w.toLowerCase());
+  if (idx >= 0) hint = wd.e.slice(0, idx) + "＿＿＿" + wd.e.slice(idx + wd.w.length);
+  return { type: "text", area: "writing", ref: { area: "writing", id: W.id }, prompt: "뜻에 맞는 단어를 직접 쓰세요.", big: esc(wd.k), hint, acc, lang, correctText: wd.w + (wd.r && wd.r !== wd.w ? " (" + wd.r + ")" : ""), ph: lang === "en" ? "영어로 입력" : lang === "ja" ? "일본어(한자 또는 히라가나)로 입력" : "중국어(한자 또는 병음)로 입력" };
+}
+function checkText(q, input) {
+  const v = normAns(input); if (!v) return false;
+  return q.acc.some(a => normAns(a) === v || (q.lang === "zh" && stripTone(a) === stripTone(v) && stripTone(a).length > 0));
+}
+function qSpeak(lang, lvl, W) {
+  const alt = []; if (W.w.er && lang === "ja") alt.push(W.w.er);
+  return { type: "speak", area: "speaking", ref: { area: "speaking", id: W.id }, prompt: "문장을 소리 내어 읽어 보세요.", sent: sentHtml(lang, W.w), sub: W.w.ek, target: W.w.e, alt, lang, audio: { text: W.w.e, lang: L[lang].tts } };
+}
+function qCard(lang, W) { return { type: "card", area: "vocab", lang, W }; }
+function qFromRef(lang, ref) {
+  const lvl = +ref.id.split(":")[1];
+  try {
+    if (ref.id.endsWith(":p")) { const ui = +ref.id.split(":")[2]; return levelUnits(lang, lvl)[ui] && levelUnits(lang, lvl)[ui].p ? qPassage(lang, lvl, ui) : null; }
+    const W = wordById(ref.id); if (!W) return null;
+    if (ref.area === "vocab") return qVocab(lang, lvl, W, Math.random() < 0.5 ? 0 : 1);
+    if (ref.area === "reading") return qReadSent(lang, lvl, W);
+    if (ref.area === "listening") return Math.random() < 0.5 ? qListenWord(lang, lvl, W) : qListenSent(lang, lvl, W);
+    if (ref.area === "writing") return qWrite(lang, lvl, W);
+  } catch (e) { /* 콘텐츠가 바뀐 경우 건너뜀 */ }
+  return null;
+}
+function areaItems(lang, lvl, area, n) {
+  const ws = shuffle(wordsOf(lang, lvl)), out = [];
+  for (let i = 0; i < n; i++) {
+    const W = ws[i % ws.length]; if (!W) break;
+    if (area === "vocab") out.push(qVocab(lang, lvl, W, i % 2));
+    if (area === "reading") out.push(qReadSent(lang, lvl, W));
+    if (area === "listening") out.push(i % 2 ? qListenSent(lang, lvl, W) : qListenWord(lang, lvl, W));
+    if (area === "writing") out.push(qWrite(lang, lvl, W));
+    if (area === "speaking") out.push(qSpeak(lang, lvl, W));
+  }
+  return out;
+}
+function buildTest(lang, lvl) {
+  const ws = shuffle(wordsOf(lang, lvl)); if (!ws.length) return [];
+  const take = (n, off) => Array.from({ length: n }, (_, i) => ws[(off + i) % ws.length]);
+  const qs = [], units = levelUnits(lang, lvl);
+  take(5, 0).forEach((W, i) => qs.push(qVocab(lang, lvl, W, i % 2)));
+  take(3, 5).forEach(W => qs.push(qReadSent(lang, lvl, W)));
+  shuffle(units.map((u, i) => i).filter(i => units[i].p)).slice(0, 2).forEach(ui => qs.push(qPassage(lang, lvl, ui)));
+  take(5, 8).forEach((W, i) => qs.push(i % 2 ? qListenSent(lang, lvl, W) : qListenWord(lang, lvl, W)));
+  take(5, 13).forEach(W => qs.push(qWrite(lang, lvl, W)));
+  take(3, 3).forEach(W => qs.push(qSpeak(lang, lvl, W)));
+  return qs;
+}
+function dueReviews(lang) { const t = today(); return Object.keys(S.review).filter(k => S.review[k].lang === lang && S.review[k].due <= t); }
+function buildDaily(lang) {
+  const st = S.langs[lang], lvl = st.level, units = levelUnits(lang, lvl); if (!units.length) return { qs: [], unitName: "" };
+  const ui = st.lessonNo % units.length, u = units[ui], ws = u.w.map((w, wi) => ({ id: lang + ":" + lvl + ":" + ui + ":" + wi, w }));
+  const qs = [];
+  ws.forEach(W => qs.push(qCard(lang, W)));
+  ws.forEach((W, i) => qs.push(qVocab(lang, lvl, W, 0)));
+  shuffle(ws).slice(0, 3).forEach(W => qs.push(qVocab(lang, lvl, W, 1)));
+  if (u.p) qs.push(qPassage(lang, lvl, ui));
+  shuffle(ws).slice(0, 2).forEach(W => qs.push(qReadSent(lang, lvl, W)));
+  shuffle(ws).slice(0, 2).forEach(W => qs.push(qListenWord(lang, lvl, W)));
+  shuffle(ws).slice(0, 2).forEach(W => qs.push(qListenSent(lang, lvl, W)));
+  shuffle(ws).slice(0, 4).forEach(W => qs.push(qWrite(lang, lvl, W)));
+  shuffle(ws).slice(0, 2).forEach(W => qs.push(qSpeak(lang, lvl, W)));
+  (st.weak || []).forEach(a => areaItems(lang, lvl, a, 3).forEach(q => { q.weak = true; qs.push(q); }));
+  dueReviews(lang).slice(0, 5).forEach(k => { const q = qFromRef(lang, S.review[k].ref); if (q) { q.fromReview = true; qs.push(q); } });
+  return { qs, unitName: "유닛 " + (ui + 1) + ". " + u.t, round: Math.floor(st.lessonNo / units.length) + 1 };
+}
+
+/* ===== 채점·판정 ===== */
+function lev(a, b) {
+  const m = a.length, n = b.length; if (!m) return n; if (!n) return m; let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) { const cur = [i]; for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = cur; }
+  return prev[n];
+}
+const normSpeech = s => String(s).toLowerCase().replace(/[\s.,!?。、，！？'’"“”「」\-]/g, "");
+function simScore(heard, targets) {
+  const h = normSpeech(heard); let best = 0;
+  targets.forEach(t => { const x = normSpeech(t); if (!x) return; best = Math.max(best, 1 - lev(h, x) / Math.max(h.length, x.length, 1)); });
+  return Math.max(0, Math.round(best * 100));
+}
+function scoreAreas(res) {
+  const by = {}; res.forEach(r => { if (!r.q.area || r.q.type === "card") return; (by[r.q.area] = by[r.q.area] || []).push(r.score != null ? r.score : (r.ok ? 100 : 0)); });
+  const out = {}; AREAS.forEach(a => { out[a] = by[a] ? mean(by[a]) : null; }); return out;
+}
+function decidePlacement(level, sc) {
+  const vals = AREAS.map(a => sc[a] == null ? 0 : sc[a]), avg = mean(vals), min = Math.min.apply(null, vals); let nl = level, why;
+  if (avg >= 90 && min >= 70 && level < 3) { nl = level + 1; why = "평균 " + avg + "점으로 선택하신 " + LV[level] + " 레벨이 쉬운 편이라 " + LV[nl] + " 레벨로 배정했어요."; }
+  else if (avg < 50 && level > 0) { nl = level - 1; why = "평균 " + avg + "점으로 선택하신 " + LV[level] + " 레벨이 어려운 편이라 " + LV[nl] + " 레벨로 배정했어요."; }
+  else why = "평균 " + avg + "점으로 선택하신 " + LV[level] + " 레벨이 알맞아요.";
+  return { avg, min, level: nl, why };
+}
+function decideMonthly(level, sc) {
+  const vals = AREAS.map(a => sc[a] == null ? 0 : sc[a]), avg = mean(vals), min = Math.min.apply(null, vals);
+  const pass = avg >= 80 && min >= 60; let nl = level, note, weak = [];
+  if (pass && level < 3) { nl = level + 1; note = "승급 조건(평균 80점 이상, 영역별 60점 이상)을 달성했어요. " + LV[nl] + " 레벨로 올라갑니다."; }
+  else if (pass) note = "최고 레벨의 승급 조건을 달성했어요. 고급 레벨을 계속 다져 보세요.";
+  else { weak = AREAS.filter(a => (sc[a] == null ? 0 : sc[a]) < 80).sort((a, b) => sc[a] - sc[b]).slice(0, 2); note = "승급 조건(평균 80점 이상, 영역별 60점 이상)에 아직 못 미쳤어요. 현재 레벨을 유지하고 " + weak.map(a => AR[a]).join("·") + " 영역을 보충 학습으로 채워요."; }
+  return { avg, min, pass, level: nl, note, weak };
+}
+
+/* ===== 경험치·배지 ===== */
+function wk() { const k = weekStart(today()); if (S.weekly.k !== k) S.weekly = { k, reviewOk: 0 }; return S.weekly; }
+function gainXp(n) { S.xp += n; }
+const ulevel = () => Math.floor(S.xp / 200) + 1;
+const MSG = ["오늘도 한 걸음 성장했어요!", "꾸준함이 실력이 됩니다.", "잘하고 있어요. 내일도 이어가요!", "작은 반복이 큰 차이를 만들어요.", "오늘 목표 달성! 수고했어요."];
+function totalLessons() { return S.lessons || 0; }
+function bestStreak() { return Math.max(0, ...Object.keys(S.langs).map(l => S.langs[l].best || 0)); }
+const BADGES = [
+  ["first_login", "🌱", "첫 출석", () => true],
+  ["placement", "🧭", "레벨 확인", () => S.tests.some(t => t.kind === "placement")],
+  ["first_lesson", "📘", "첫 수강 완료", () => totalLessons() >= 1],
+  ["streak3", "🔥", "3일 연속", () => bestStreak() >= 3],
+  ["streak7", "🏅", "7일 연속", () => bestStreak() >= 7],
+  ["streak30", "🏆", "30일 연속", () => bestStreak() >= 30],
+  ["review10", "🔁", "복습 10개 정답", () => S.stats.reviewOk >= 10],
+  ["promo", "⬆️", "레벨업", () => S.tests.some(t => t.promoted)],
+  ["xp500", "⭐", "XP 500", () => S.xp >= 500],
+  ["polyglot", "🌏", "두 언어 이상", () => Object.keys(S.langs).length >= 2],
+  ["perfect", "💯", "만점 학습", () => !!S.badges.perfect]
+];
+function checkBadges(extra) {
+  const got = [];
+  if (extra && !S.badges[extra]) { S.badges[extra] = today(); const b = BADGES.find(x => x[0] === extra); if (b) got.push(b[1] + " " + b[2]); }
+  BADGES.forEach(b => { if (!S.badges[b[0]] && b[3]()) { S.badges[b[0]] = today(); got.push(b[1] + " " + b[2]); } });
+  return got;
+}
+/* ===== 화면 상태·공통 ===== */
+let sess = null, lastResult = null, statLang = null, calMonth = null, gradeLang = null;
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+function toast(msg) { const t = $("#toast"); if (!t) return; t.textContent = msg; t.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("on"), 2800); }
+function go(h) { if (location.hash === h) render(); else location.hash = h; }
+function speak(text, lang) {
+  if (!("speechSynthesis" in window)) { toast("이 브라우저는 음성 재생을 지원하지 않아요."); return; }
+  try {
+    speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = lang; u.rate = S.settings.rate;
+    const vs = speechSynthesis.getVoices(), v = vs.find(x => x.lang.replace("_", "-").toLowerCase().indexOf(lang.slice(0, 2).toLowerCase()) === 0);
+    if (v) u.voice = v; else if (vs.length) toast("이 기기에 해당 언어 음성이 없어 소리가 다르게 날 수 있어요.");
+    speechSynthesis.speak(u);
+  } catch (e) { toast("음성을 재생하지 못했어요."); }
+}
+const speakBtn = (text, lang, label) => '<button class="btn small" data-say="' + esc(text) + '" data-lang="' + lang + '">🔊 ' + (label || "듣기") + "</button>";
+function nav(active) {
+  const it = [["home", "🏠", "홈"], ["stats", "📅", "출석"], ["grades", "📊", "성적"], ["review", "🔁", "복습"], ["rewards", "⭐", "보상"], ["settings", "⚙️", "설정"]];
+  return '<nav class="nav">' + it.map(i => '<a href="#/' + i[0] + '" class="' + (active === i[0] ? "on" : "") + '"><b>' + i[1] + "</b>" + i[2] + "</a>").join("") + "</nav>";
+}
+const page = (html, active) => ({ html: '<div class="wrap">' + html + "</div>" + (active ? nav(active) : ""), active });
+const monthlyAvailable = l => !S.tests.some(t => t.kind === "monthly" && t.lang === l && t.date.slice(0, 7) === today().slice(0, 7));
+const bar = (p, cls) => '<div class="bar ' + (cls || "") + '"><i style="width:' + Math.max(0, Math.min(100, p)) + '%"></i></div>';
+
+/* ===== 로그인·프로필 ===== */
+function viewSetup() {
+  return page('<div class="lock card"><h1>외국어공부</h1><p class="muted">혼자 쓰는 학습 앱이에요. 이름과 숫자 4자리 PIN을 정해 주세요.</p>' +
+    '<p><input type="text" id="name" placeholder="이름" maxlength="20" autocomplete="off"></p>' +
+    '<p><input type="password" id="pin" inputmode="numeric" maxlength="4" placeholder="PIN 4자리" autocomplete="off"></p>' +
+    '<p><input type="password" id="pin2" inputmode="numeric" maxlength="4" placeholder="PIN 다시 입력" autocomplete="off"></p>' +
+    '<button class="btn primary block" data-act="setup">시작하기</button>' +
+    '<p class="small muted">PIN은 이 기기에서 앱을 가볍게 잠그는 용도예요. 데이터는 이 브라우저에만 저장되니 설정에서 정기적으로 백업해 주세요.</p></div>');
+}
+function viewLogin() {
+  return page('<div class="lock card center"><h1>외국어공부</h1><p class="muted">' + esc(S.profile.name) + "님, PIN을 입력해 주세요.</p>" +
+    '<p><input type="password" id="pin" inputmode="numeric" maxlength="4" placeholder="PIN 4자리" autocomplete="off" style="text-align:center"></p>' +
+    '<button class="btn primary block" data-act="login">들어가기</button><p><button class="link" data-act="forgot">PIN을 잊었어요</button></p></div>');
+}
+
+/* ===== 홈 ===== */
+function langCard(l) {
+  const st = S.langs[l], t = today(), done = todayDone(l), rest = isRest(t), due = dueReviews(l).length, mk = openMakeup(l), units = levelUnits(l, st.level);
+  const un = units.length ? units[st.lessonNo % units.length].t : "-";
+  let note;
+  if (!rest) note = done ? '<span class="chip ok">오늘 수강 완료</span>' : '<span class="chip warn">오늘 학습 전</span>';
+  else note = done ? '<span class="chip ok">쉬는 날 학습 완료</span>' : (mk > 0 ? '<span class="chip warn">만회 가능 ' + mk + "일</span>" : '<span class="chip">쉬는 날</span>');
+  const mAvail = monthlyAvailable(l);
+  return '<div class="card"><div class="row between"><div><h3>' + L[l].name + " · " + LV[st.level] + '</h3><span class="muted small">' + L[l].exam[st.level] + " 수준 · 🔥 " + streak(l) + "일 연속</span></div>" + note + "</div>" +
+    '<p class="small muted">다음 학습: ' + esc(un) + (st.weak && st.weak.length ? " · 보충 학습: " + st.weak.map(a => AR[a]).join("·") : "") + "</p>" +
+    '<div class="row"><button class="btn primary" data-act="study" data-lang="' + l + '">' + (done ? "추가 학습" : rest ? "만회·자율 학습" : "오늘 학습 시작") + "</button>" +
+    '<button class="btn" data-act="reviewStart" data-lang="' + l + '"' + (due ? "" : " disabled") + ">복습 " + due + "개</button>" +
+    '<button class="btn" data-act="monthly" data-lang="' + l + '"' + (mAvail ? "" : " disabled") + ">" + (mAvail ? "월간 승급 테스트" : "이번 달 응시 완료") + "</button></div>" +
+    '<p class="small"><a href="#/start/' + l + '">레벨 다시 정하기</a></p></div>';
+}
+function viewHome() {
+  const t = today(), rest = isRest(t), langs = Object.keys(S.langs);
+  let h = '<div class="hero"><div><h1>' + esc(S.profile.name) + '님, 안녕하세요</h1><p class="muted">' + fmtDate(t) + " · " + (rest ? "쉬는 날" : "학습일") + ' · 오늘 출석 완료 ✓</p></div><div class="xp">Lv.' + ulevel() + " · " + S.xp + " XP</div></div>";
+  const pend = langs.filter(l => !todayDone(l) && (!rest || openMakeup(l) > 0));
+  if (pend.length) h += '<div class="banner">⏰ ' + (rest ? "이번 주 부족분을 만회할 수 있어요: " : "오늘 학습이 남아 있어요: ") + pend.map(l => L[l].name).join(", ") + "</div>";
+  if (!langs.length) h += '<div class="card pri"><h3>학습할 언어를 골라 시작해 보세요</h3><p class="muted">언어마다 레벨을 고른 뒤 그 수준에 맞는 레벨 테스트를 보고, 결과에 따라 학습 레벨이 정해져요.</p></div>';
+  langs.forEach(l => { h += langCard(l); });
+  const rest2 = Object.keys(L).filter(l => !S.langs[l]);
+  if (rest2.length) { h += "<h2>언어 추가</h2><div class=\"grid2\">" + rest2.map(l => '<a class="card center" href="#/start/' + l + '"><h3>' + L[l].name + '</h3><span class="muted small">레벨 선택 후 테스트 시작</span></a>').join("") + "</div>"; }
+  h += '<p class="small"><a href="#/ai">✍️ AI 작문 첨삭(선택 기능)</a></p>';
+  return page(h, "home");
+}
+function viewStart(lang) {
+  if (!L[lang]) return viewHome();
+  const cur = S.langs[lang];
+  let h = '<h1>' + L[lang].name + " 시작하기</h1><p class=\"muted\">" + (cur ? "레벨을 다시 정하는 테스트예요. " : "") + "현재 수준에 가장 가까운 레벨을 먼저 고르세요. 선택한 레벨에 맞춰 레벨 테스트(읽기·쓰기·말하기·듣기·어휘 5개 영역, 21문항, 약 15~20분)를 보고, 결과에 따라 레벨이 자동 배정돼요.</p>";
+  h += LV.map((n, i) => '<div class="card"><div class="row between"><div><h3>' + n + '</h3><span class="muted small">' + L[lang].exam[i] + " 수준 · 유닛 " + levelUnits(lang, i).length + '개</span></div><button class="btn primary" data-act="placeStart" data-lang="' + lang + '" data-lvl="' + i + '">이 레벨로 테스트</button></div></div>').join("");
+  h += '<p class="small muted">말하기는 마이크 권한이 필요해요. 음성 인식을 지원하지 않는 브라우저에서는 스스로 평가해요. 공인시험 표기는 참고용이며 실제 점수를 보장하지 않아요.</p><p><a href="#/home">← 홈으로</a></p>';
+  return page(h);
+}
+
+/* ===== 학습 세션 ===== */
+const curQ = () => sess.qs[sess.i];
+function startSession(kind, lang, qs, extra) {
+  if (!qs.length) { toast("이 레벨에는 아직 준비된 콘텐츠가 없어요."); return; }
+  sess = Object.assign({ kind, lang, qs, i: 0, res: [], fb: null, flip: false, tr: false, rec: false, title: "", lvl: S.langs[lang] ? S.langs[lang].level : 0 }, extra);
+  go("#/session");
+}
+function ensureArea(l) { const st = S.langs[l]; if (!st.area) st.area = {}; AREAS.forEach(a => { if (!st.area[a]) st.area[a] = { ok: 0, all: 0 }; }); return st.area; }
+function recordAnswer(q, ok, score) {
+  sess.res.push({ q: { area: q.area, type: q.type, ref: q.ref }, ok, score: score == null ? null : score });
+  S.stats.all++; if (ok) S.stats.ok++;
+  if ((sess.kind === "daily" || sess.kind === "review") && S.langs[sess.lang]) { const a = ensureArea(sess.lang)[q.area]; a.all++; if (ok) a.ok++; }
+  if (q.ref && q.area !== "speaking") {
+    const key = q.ref.area + "|" + q.ref.id, it = S.review[key];
+    if (sess.kind === "review" || q.fromReview) {
+      if (it) { if (ok) { it.box++; wk().reviewOk++; S.stats.reviewOk++; if (it.box >= INTERVALS.length) delete S.review[key]; else it.due = addDays(today(), INTERVALS[it.box]); } else { it.box = 0; it.due = addDays(today(), 1); it.wrong = (it.wrong || 0) + 1; } }
+    } else if (!ok) { S.review[key] = { lang: sess.lang, ref: q.ref, box: 0, due: addDays(today(), 1), wrong: ((it && it.wrong) || 0) + 1, since: (it && it.since) || today() }; }
+  }
+  gainXp(ok ? (sess.kind === "review" ? 3 : 2) : 0); save();
+}
+function qHtml(q) {
+  const s = sess, fb = s.fb; let h = "";
+  if (q.type === "card") {
+    const W = q.W.w; h += '<p class="muted small">단어 학습 · 눌러서 뜻 확인</p><div class="big">' + wordBig(q.lang, W) + "</div><div class=\"center\">" + speakBtn(ttsWord(q.lang, W), L[q.lang].tts) + "</div>";
+    if (s.flip) h += '<div class="card"><h3>' + esc(W.k) + '</h3><p>' + esc(W.e) + "</p>" + (W.er && q.lang !== "en" ? '<p class="muted small">' + esc(W.er) + "</p>" : "") + '<p class="muted">' + esc(W.ek) + "</p>" + speakBtn(W.e, L[q.lang].tts, "예문 듣기") + "</div>";
+    h += '<div class="row" style="margin-top:12px">' + (s.flip ? '<button class="btn primary block" data-act="next">다음</button>' : '<button class="btn primary block" data-act="flip">뜻 보기</button>') + "</div>";
+    return h;
+  }
+  h += '<p class="muted small">' + AR[q.area] + (q.weak ? " · 보충" : "") + (q.fromReview ? " · 복습" : "") + "</p>";
+  if (q.ctx) { h += '<div class="ctx">' + esc(q.ctx.t) + (q.ctx.r && ((q.lang === "ja" && S.settings.furigana) || S.settings.pinyin) ? '<div class="small muted">' + esc(q.ctx.r) + "</div>" : "") + "</div>"; h += '<div class="row">' + (q.audio ? speakBtn(q.audio.text, q.audio.lang, "지문 듣기") : "") + '<button class="btn small" data-act="trans">' + (s.tr ? "번역 숨기기" : "번역 보기") + "</button></div>" + (s.tr ? '<p class="small muted">' + esc(q.ctx.k) + "</p>" : ""); }
+  h += "<p><b>" + esc(q.prompt) + "</b></p>";
+  if (q.big) h += '<div class="big">' + q.big + "</div>";
+  if (q.sent) h += q.sent;
+  if (q.sub) h += '<p class="center muted small">' + esc(q.sub) + "</p>";
+  if (q.audio && !q.ctx) h += '<div class="center">' + speakBtn(q.audio.text, q.audio.lang, q.area === "listening" ? "다시 듣기" : "듣기") + "</div>";
+  if (q.type === "mcq") {
+    h += '<div class="opts">' + q.opts.map((o, i) => { let c = "opt"; if (fb) { if (i === q.ans) c += " ok"; else if (i === fb.pick) c += " bad"; } return '<button class="' + c + '" data-act="pick" data-i="' + i + '"' + (fb ? " disabled" : "") + ">" + esc(o) + "</button>"; }).join("") + "</div>";
+    if (fb) h += '<div class="fb ' + (fb.ok ? "ok" : "bad") + '">' + (fb.ok ? "정답이에요!" : "아쉬워요") + "<small>정답: " + esc(q.correctText) + "</small></div>";
+  } else if (q.type === "text") {
+    if (q.hint) h += '<p class="center muted">' + esc(q.hint) + "</p>";
+    h += '<p><input type="text" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + esc(q.ph) + '"' + (fb ? " disabled" : "") + (fb ? ' value="' + esc(fb.input) + '"' : "") + "></p>";
+    if (!fb) h += '<button class="btn primary block" data-act="submit">확인</button>';
+    else h += '<div class="fb ' + (fb.ok ? "ok" : "bad") + '">' + (fb.ok ? "정답이에요!" : "아쉬워요") + "<small>정답: " + esc(q.correctText) + "</small></div>";
+  } else if (q.type === "speak") {
+    if (!fb) {
+      if (SR) h += '<button class="btn primary block" data-act="rec"' + (s.rec ? " disabled" : "") + ">" + (s.rec ? "🎙️ 듣는 중… 말씀하세요" : "🎙️ 녹음하고 읽기") + '</button><p class="center"><button class="link" data-act="skip">건너뛰기(0점)</button></p>';
+      else h += '<p class="muted small">이 브라우저는 음성 인식을 지원하지 않아요. 소리 내어 읽은 뒤 스스로 평가해 주세요.</p><div class="row"><button class="btn" data-act="self" data-score="100">잘 읽었어요</button><button class="btn" data-act="self" data-score="60">보통이에요</button><button class="btn" data-act="self" data-score="30">어려웠어요</button></div>';
+    } else h += '<div class="fb ' + (fb.ok ? "ok" : "bad") + '">' + fb.score + "점" + (fb.heard ? "<small>인식된 문장: " + esc(fb.heard) + "</small>" : "<small>스스로 평가한 점수예요.</small>") + "</div>";
+  }
+  if (fb) h += '<div style="margin-top:12px"><button class="btn primary block" data-act="next">다음</button></div>';
+  return h;
+}
+function viewSession() {
+  if (!sess) return viewHome();
+  const q = curQ(); if (!q) { finish(); return null; }
+  const total = sess.qs.length;
+  const h = '<div class="sess-head"><span class="chip">' + esc(sess.title) + '</span><span class="muted">' + (sess.i + 1) + " / " + total + '</span><button class="link" data-act="quit">그만하기</button></div>' + bar(sess.i / total * 100) + '<div class="card q">' + qHtml(q) + "</div>";
+  return page(h);
+}
+function finish() {
+  const s = sess; sess = null; cache = {}; const lang = s.lang, t = today();
+  if (s.kind === "placement" || s.kind === "monthly") {
+    const sc = scoreAreas(s.res); AREAS.forEach(a => { if (sc[a] == null) sc[a] = 0; });
+    let rec, d, got;
+    if (s.kind === "placement") {
+      d = decidePlacement(s.lvl, sc);
+      rec = { id: Date.now(), date: t, lang, level: s.lvl, kind: "placement", scores: sc, avg: d.avg, assigned: d.level };
+      if (!S.langs[lang]) S.langs[lang] = { level: d.level, lessonNo: 0, start: t, weak: [], area: {}, best: 0 }; else { S.langs[lang].level = d.level; S.langs[lang].lessonNo = 0; S.langs[lang].weak = []; }
+      ensureArea(lang); gainXp(20); S.tests.push(rec); got = checkBadges();
+      lastResult = { type: "placement", lang, sc, d, sel: s.lvl, got };
+    } else {
+      d = decideMonthly(s.lvl, sc); const promoted = d.pass && s.lvl < 3;
+      rec = { id: Date.now(), date: t, lang, level: s.lvl, kind: "monthly", scores: sc, avg: d.avg, assigned: d.level, promoted };
+      const st = S.langs[lang]; if (promoted) { st.level = d.level; st.lessonNo = 0; st.weak = []; } else if (!d.pass) st.weak = d.weak; else st.weak = [];
+      gainXp(promoted ? 60 : 30); S.tests.push(rec); got = checkBadges();
+      lastResult = { type: "monthly", lang, sc, d, sel: s.lvl, promoted, got };
+    }
+  } else if (s.kind === "daily") {
+    const e = S.log[t] || (S.log[t] = {}); e.attended = true; e.done = e.done || {}; e.done[lang] = true;
+    S.lessons = (S.lessons || 0) + 1; S.langs[lang].lessonNo++; gainXp(30);
+    const rs = s.res.filter(r => r.q.type !== "card"), ok = rs.filter(r => r.ok).length, perfect = rs.length && ok === rs.length;
+    cache = {}; const sn = streak(lang); S.langs[lang].best = Math.max(S.langs[lang].best || 0, sn);
+    const got = checkBadges(perfect ? "perfect" : null);
+    lastResult = { type: "daily", lang, ok, total: rs.length, streak: sn, msg: rnd(MSG), got, rest: isRest(t) };
+  } else {
+    const rs = s.res; const ok = rs.filter(r => r.ok).length; const got = checkBadges();
+    lastResult = { type: "review", lang, ok, total: rs.length, got };
+  }
+  save(); go("#/result");
+}
+function viewResult() {
+  const r = lastResult; if (!r) return viewHome();
+  let h = "";
+  const gotHtml = r.got && r.got.length ? '<div class="banner">🎉 새 배지: ' + r.got.map(esc).join(", ") + "</div>" : "";
+  if (r.type === "placement" || r.type === "monthly") {
+    const d = r.d, avg = d.avg;
+    h += "<h1>" + (r.type === "placement" ? "레벨 테스트 결과" : "월간 승급 테스트 결과") + '</h1><p class="muted">' + L[r.lang].name + " · 응시 레벨 " + LV[r.sel] + "</p>";
+    h += '<div class="card pri center"><div style="font-size:40px;font-weight:800">' + avg + '점 · ' + grade(avg) + "</div><p><b>" + esc(r.type === "placement" ? d.why : d.note) + "</b></p>" + (r.type === "placement" ? '<span class="chip">배정 레벨: ' + LV[d.level] + " (" + L[r.lang].exam[d.level] + ")</span>" : r.promoted ? '<span class="chip ok">⬆️ ' + LV[d.level] + " 레벨업</span>" : '<span class="chip warn">현재 레벨 유지</span>') + "</div>";
+    h += '<div class="card">' + AREAS.map(a => '<div class="score-row"><span>' + AR[a] + "</span>" + bar(r.sc[a], r.sc[a] >= 60 ? "ok" : "") + "<b>" + r.sc[a] + "</b></div>").join("") + "</div>" + gotHtml;
+  } else if (r.type === "daily") {
+    h += "<h1>오늘 학습 완료!</h1>" + '<div class="card pri center"><div style="font-size:36px;font-weight:800">' + r.ok + " / " + r.total + '</div><p><b>' + esc(r.msg) + "</b></p><span class=\"chip ok\">" + (r.rest ? "만회·자율 학습 인정" : "수강 완료") + '</span> <span class="chip">🔥 ' + r.streak + "일 연속</span> <span class=\"chip\">+30 XP</span></div>" + gotHtml;
+  } else {
+    h += "<h1>복습 완료</h1>" + '<div class="card pri center"><div style="font-size:36px;font-weight:800">' + r.ok + " / " + r.total + "</div><p>틀린 문제는 내일 다시 만나요.</p></div>" + gotHtml;
+  }
+  h += '<p><a class="btn primary" href="#/home">홈으로</a></p>';
+  return page(h, "home");
+}
+
+/* ===== 출석·수강 ===== */
+function calHtml(l, month) {
+  const [y, m] = month.split("-").map(Number), first = new Date(y, m - 1, 1), n = new Date(y, m, 0).getDate(), lead = (first.getDay() + 6) % 7, hs = holidaySet(), t = today();
+  let h = '<div class="cal">' + ["월", "화", "수", "목", "금", "토", "일"].map(d => '<div class="h">' + d + "</div>").join("");
+  for (let i = 0; i < lead; i++) h += "<div></div>";
+  for (let d = 1; d <= n; d++) {
+    const k = y + "-" + pad(m) + "-" + pad(d), s = status(k, l); let cls = s, lab = "";
+    if ((s === "future" || s === "none") && isRest(k)) cls = "rest";
+    if (s === "done") lab = "수강"; else if (s === "credited") lab = "만회"; else if (s === "extra") lab = "추가"; else if (s === "missed") lab = "결석"; else if (s === "pending") lab = "오늘";
+    else if (hs.has(k)) lab = "공휴일";
+    h += '<div class="d ' + cls + (k === t ? " today" : "") + '"><b>' + d + "</b>" + (attended(k) ? '<span class="a">●</span>' : "") + '<span class="t">' + lab + "</span></div>";
+  }
+  return h + "</div>";
+}
+function viewStats() {
+  const langs = Object.keys(S.langs); if (!langs.length) return page("<h1>출석·수강</h1><p class=\"muted\">언어를 시작하면 출석과 수강 현황이 여기에 표시돼요.</p>", "stats");
+  if (!statLang || !S.langs[statLang]) statLang = langs[0];
+  const l = statLang, t = today(), month = calMonth || t.slice(0, 7), ws = weekStart(t), ms = t.slice(0, 7) + "-01";
+  const w = rangeStats(l, ws, t), m = rangeStats(l, ms, t), a = rangeStats(l, "2000-01-01", t);
+  let h = "<h1>출석·수강 현황</h1>" + '<div class="tabs">' + langs.map(x => '<button class="btn small ' + (x === l ? "on" : "") + '" data-act="statLang" data-lang="' + x + '">' + L[x].name + "</button>").join("") + "</div>";
+  h += '<div class="card"><p>🔥 연속 학습 <b>' + streak(l) + "일</b> · 최고 " + (S.langs[l].best || 0) + "일</p><table><tr><th></th><th>출석률</th><th>수강완료율</th></tr>" +
+    [["이번 주", w], ["이번 달", m], ["전체", a]].map(r => "<tr><td>" + r[0] + "</td><td>" + r[1].attRate + "% <span class=\"muted small\">(" + r[1].att + "/" + r[1].req + ")</span></td><td>" + r[1].compRate + "% <span class=\"muted small\">(" + r[1].comp + "/" + r[1].req + ")</span></td></tr>").join("") + "</table>" +
+    '<p class="small muted">출석은 로그인한 날, 수강완료는 일일 목표 학습을 마친 날이에요. 토·일·공휴일은 쉬는 날로 계산에서 빠지고, 평일에 못 한 학습은 같은 주 쉬는 날에 만회하면 인정돼요.</p></div>';
+  const [y, mo] = month.split("-").map(Number);
+  h += '<div class="row between"><button class="btn small" data-act="calPrev">← 이전</button><b>' + y + "년 " + mo + '월</b><button class="btn small" data-act="calNext">다음 →</button></div>' + calHtml(l, month);
+  h += '<div class="legend"><span><i style="background:var(--ok-soft)"></i>수강 완료</span><span><i style="background:var(--pri-soft)"></i>만회·추가 학습</span><span><i style="background:var(--bad-soft)"></i>결석</span><span><i style="background:var(--rest)"></i>쉬는 날</span><span>● 출석</span></div>';
+  return page(h, "stats");
+}
+
+/* ===== 성적 ===== */
+function spark(vals) {
+  if (vals.length < 2) return "";
+  const W = 300, H = 80, pts = vals.map((v, i) => (10 + i * (W - 20) / (vals.length - 1)).toFixed(1) + "," + (H - 10 - v / 100 * (H - 20)).toFixed(1)).join(" ");
+  return '<svg viewBox="0 0 ' + W + " " + H + '" style="width:100%;max-width:420px" role="img" aria-label="평균 점수 추이"><polyline points="' + pts + '" fill="none" stroke="var(--pri)" stroke-width="2.5"/>' + vals.map((v, i) => '<circle cx="' + (10 + i * (W - 20) / (vals.length - 1)).toFixed(1) + '" cy="' + (H - 10 - v / 100 * (H - 20)).toFixed(1) + '" r="3.5" fill="var(--pri)"/>').join("") + "</svg>";
+}
+function viewGrades() {
+  const langs = Object.keys(S.langs); if (!langs.length) return page("<h1>성적</h1><p class=\"muted\">레벨 테스트를 보면 성적이 여기에 기록돼요.</p>", "grades");
+  if (!gradeLang || !S.langs[gradeLang]) gradeLang = langs[0];
+  const l = gradeLang, st = S.langs[l], tests = S.tests.filter(t => t.lang === l);
+  let h = "<h1>성적 관리</h1>" + '<div class="tabs">' + langs.map(x => '<button class="btn small ' + (x === l ? "on" : "") + '" data-act="gradeLang" data-lang="' + x + '">' + L[x].name + "</button>").join("") + "</div>";
+  h += '<div class="card"><h3>현재 레벨: ' + LV[st.level] + " <span class=\"muted small\">" + L[l].exam[st.level] + "</span></h3><p class=\"small muted\">일일 학습 영역별 정답률</p>";
+  const ar = ensureArea(l);
+  h += AREAS.map(a => { const p = ar[a].all ? Math.round(ar[a].ok / ar[a].all * 100) : 0; return '<div class="score-row"><span>' + AR[a] + "</span>" + bar(p) + "<b>" + (ar[a].all ? p + "%" : "-") + "</b></div>"; }).join("") + "</div>";
+  h += "<h2>시험 기록</h2>";
+  if (!tests.length) h += '<p class="muted">아직 응시한 시험이 없어요.</p>';
+  else {
+    h += '<div class="card"><table><tr><th>날짜</th><th>종류</th><th>어휘</th><th>읽기</th><th>듣기</th><th>쓰기</th><th>말하기</th><th>평균</th></tr>' +
+      tests.slice().reverse().map(t => "<tr><td>" + t.date.slice(5) + "</td><td>" + (t.kind === "placement" ? "배치" : "승급") + "·" + LV[t.level].slice(0, 2) + "</td>" + AREAS.map(a => "<td>" + t.scores[a] + "</td>").join("") + "<td><b>" + t.avg + " " + grade(t.avg) + "</b></td></tr>").join("") + "</table></div>";
+    h += '<div class="card"><p class="small muted">평균 점수 추이</p>' + (tests.length > 1 ? spark(tests.map(t => t.avg)) : "<p class=\"muted small\">시험을 두 번 이상 보면 추이가 그려져요.</p>") + "</div>";
+  }
+  h += '<p class="small muted">등급: 90점 이상 A · 80점 이상 B · 70점 이상 C · 60점 이상 D · 그 미만 F</p>';
+  return page(h, "grades");
+}
+
+/* ===== 복습·보상 ===== */
+function viewReview() {
+  const keys = Object.keys(S.review), t = today(), langs = Object.keys(S.langs);
+  let h = "<h1>오답노트·복습</h1><p class=\"muted\">틀린 문제는 1·3·7·14·30일 간격으로 다시 나와요. 맞히면 간격이 늘어나고, 5단계를 통과하면 졸업해요.</p>";
+  langs.forEach(l => { const d = dueReviews(l).length; h += '<div class="card row between"><div><h3>' + L[l].name + "</h3><span class=\"muted small\">오늘 복습할 문제 " + d + "개</span></div><button class=\"btn primary\" data-act=\"reviewStart\" data-lang=\"" + l + '"' + (d ? "" : " disabled") + ">복습 시작</button></div>"; });
+  if (!keys.length) h += '<p class="muted">오답노트가 비어 있어요. 학습 중 틀린 문제가 자동으로 쌓여요.</p>';
+  else {
+    h += '<h2>오답노트 (' + keys.length + '개)</h2><div class="card"><table><tr><th>항목</th><th>영역</th><th>단계</th><th>다음 복습</th></tr>' + keys.sort((a, b) => S.review[a].due.localeCompare(S.review[b].due)).slice(0, 60).map(k => {
+      const it = S.review[k]; let label = "-"; if (it.ref.id.endsWith(":p")) label = "독해 문제"; else { const W = wordById(it.ref.id); if (W) label = esc(W.w.w) + " <span class=\"muted small\">" + esc(W.w.k) + "</span>"; }
+      return "<tr><td>" + label + "</td><td>" + AR[it.ref.area] + "</td><td>" + (it.box + 1) + "/5</td><td>" + (it.due <= t ? "<b>오늘</b>" : it.due.slice(5)) + "</td></tr>";
+    }).join("") + "</table></div>";
+  }
+  return page(h, "review");
+}
+function viewRewards() {
+  const t = today(), ws = weekStart(t), langs = Object.keys(S.langs), lv = ulevel(), into = S.xp % 200;
+  let weekDone = 0, weekReq = 0; for (let i = 0; i < 7; i++) { const k = addDays(ws, i); if (k > t) break; if (!isRest(k)) weekReq++; if (langs.some(l => doneOn(k, l))) weekDone++; }
+  for (let i = 0; i < 7; i++) { const k = addDays(ws, i); if (k > t && !isRest(k)) weekReq++; }
+  const cur = Math.max(0, ...langs.map(l => streak(l)));
+  const ch = [["이번 주 수강 완료", Math.min(weekDone, weekReq), weekReq || 5, "일"], ["이번 주 복습 정답", Math.min(wk().reviewOk, 10), 10, "개"], ["7일 연속 학습", Math.min(cur, 7), 7, "일"]];
+  let h = "<h1>보상</h1><div class=\"card pri\"><h3>Lv." + lv + " · " + S.xp + " XP</h3>" + bar(into / 200 * 100) + '<p class="small muted">다음 레벨까지 ' + (200 - into) + " XP · 학습 완료 +30, 정답 +2, 복습 정답 +3, 시험 +20~60</p></div>";
+  h += "<h2>도전 과제</h2>" + ch.map(c => '<div class="card"><div class="row between"><b>' + c[0] + "</b><span>" + c[1] + " / " + c[2] + c[3] + "</span></div>" + bar(c[1] / c[2] * 100, c[1] >= c[2] ? "ok" : "") + "</div>").join("");
+  h += "<h2>배지</h2><div class=\"badges\">" + BADGES.map(b => '<div class="badge ' + (S.badges[b[0]] ? "" : "off") + '"><b>' + b[1] + "</b>" + b[2] + "</div>").join("") + "</div>";
+  return page(h, "rewards");
+}
+
+/* ===== 설정 ===== */
+const sw = (key, label, checked, extra) => '<div class="switch"><span>' + label + (extra ? '<br><span class="small muted">' + extra + "</span>" : "") + '</span><input type="checkbox" data-set="' + key + '"' + (checked ? " checked" : "") + "></div>";
+function viewSettings() {
+  const s = S.settings, hs = Array.from(holidaySet()).filter(k => k >= today()).sort().slice(0, 14);
+  let h = "<h1>설정</h1>";
+  h += '<div class="card"><h3>화면·음성</h3>' + sw("dark", "다크 모드", s.dark) + '<div class="switch"><span>음성 속도</span><select data-set="rate" style="width:120px">' + [["0.7", "느리게"], ["0.9", "보통"], ["1.1", "빠르게"]].map(o => '<option value="' + o[0] + '"' + (String(s.rate) === o[0] ? " selected" : "") + ">" + o[1] + "</option>").join("") + "</select></div></div>";
+  h += '<div class="card"><h3>표기 보조</h3>' + sw("furigana", "일본어 후리가나(한자 위 발음)", s.furigana) + sw("pinyin", "중국어 병음(성조 포함)", s.pinyin) + sw("hangul", "한국어 발음(한글 표기)", s.hangul, "일본어·중국어 단어에 함께 표시") + "</div>";
+  h += '<div class="card"><h3>알림</h3>' + sw("notify", "학습 알림", s.notify, "앱(브라우저 탭)을 열어 둔 동안만 알려요. 닫혀 있으면 앱을 열 때 홈에 안내가 떠요.") + '<div class="switch"><span>알림 시각</span><input type="time" data-set="notifyTime" value="' + esc(s.notifyTime) + '" style="width:130px"></div></div>';
+  h += '<div class="card"><h3>쉬는 날(공휴일)</h3><p class="small muted">토·일은 자동으로 쉬는 날이에요. 내장 공휴일은 2027년 말까지이며 공식 달력으로 꼭 확인해 주세요. 이후는 직접 추가하세요.</p>' +
+    '<div class="row">' + hs.map(k => '<span class="chip">' + k.slice(2) + ' <button class="link" data-act="delHol" data-k="' + k + '">✕</button></span>').join("") + '</div><div class="row" style="margin-top:10px"><input type="date" id="holDate" style="width:170px"><button class="btn small" data-act="addHol">공휴일 추가</button></div></div>';
+  h += '<div class="card"><h3>프로필</h3><p>' + esc(S.profile.name) + '</p><details><summary>PIN 변경</summary><p><input type="password" id="oldPin" inputmode="numeric" maxlength="4" placeholder="현재 PIN"></p><p><input type="password" id="newPin" inputmode="numeric" maxlength="4" placeholder="새 PIN 4자리"></p><button class="btn small" data-act="chgPin">변경</button></details></div>';
+  h += '<div class="card"><h3>데이터</h3><p class="small muted">기록은 이 브라우저에만 저장돼요. 기기를 바꾸거나 브라우저 데이터를 지우기 전에 꼭 내보내기 하세요.</p><div class="row"><button class="btn" data-act="export">내보내기</button><button class="btn" data-act="import">불러오기</button><button class="btn danger" data-act="reset">전체 초기화</button></div><input type="file" id="impFile" accept=".json,application/json" hidden></div>';
+  h += '<div class="card"><h3>콘텐츠 팩 불러오기</h3><p class="small muted">Claude가 만들어 준 학습 팩(JSON)을 붙여 넣으면 해당 레벨에 유닛이 추가돼요.</p><textarea id="packText" placeholder="JSON 붙여넣기"></textarea><p><button class="btn" data-act="packImport">추가하기</button></p><details><summary>JSON 형식 보기</summary><pre>' + esc('{"lang":"en","level":0,"units":[{"t":"유닛 이름","w":[{"w":"cat","r":"","h":"","k":"고양이","e":"I have a cat.","er":"","ek":"나는 고양이가 있다."}],"p":{"t":"본문","r":"","k":"번역","q":"질문","o":["정답","오답1","오답2"]}}]}') + "</pre></details></div>";
+  h += '<div class="card"><h3>AI 첨삭 키(선택)</h3><p class="small muted">자유 작문 첨삭에만 쓰이는 선택 기능이에요. Anthropic API 키는 무료 발급이지만 사용량은 선불 크레딧으로 과금돼요. 키는 이 브라우저에만 저장되고 백업 파일에는 포함되지 않아요.</p><input type="password" data-set="apiKey" value="' + esc(s.apiKey) + '" placeholder="sk-ant-..." autocomplete="off"></div>';
+  return page(h, "settings");
+}
+function viewAi() {
+  const langs = Object.keys(L);
+  return page('<h1>AI 작문 첨삭 <span class="chip">선택</span></h1><p class="muted small">쓴 글을 AI가 점수와 교정문으로 알려줘요. 설정에 API 키가 있어야 하고 사용량만큼 비용이 들어요.</p>' +
+    '<div class="card"><p><select id="aiLang">' + langs.map(l => '<option value="' + l + '">' + L[l].name + "</option>").join("") + '</select></p><p><input type="text" id="aiTopic" placeholder="주제(선택) 예: 나의 하루"></p><p><textarea id="aiText" placeholder="외국어로 써 보세요"></textarea></p><button class="btn primary block" data-act="aiRun">첨삭 받기</button><div id="aiOut"></div></div><p><a href="#/home">← 홈으로</a></p>');
+}
+async function aiRun() {
+  const key = S.settings.apiKey; if (!key) { toast("설정에서 API 키를 먼저 입력해 주세요."); return; }
+  const lang = $("#aiLang").value, text = $("#aiText").value.trim(), topic = $("#aiTopic").value.trim(); if (!text) { toast("글을 먼저 써 주세요."); return; }
+  const out = $("#aiOut"); out.innerHTML = '<p class="muted">첨삭 중…</p>';
+  try {
+    const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" }, body: JSON.stringify({ model: "claude-haiku-5-5", max_tokens: 1000, system: "당신은 한국인 학습자를 가르치는 " + L[lang].name + " 선생님입니다. 학습자의 글을 읽고 한국어로 답하세요. 형식: 1) 점수(0~100) 2) 교정한 문장 3) 틀린 부분 설명 3개 이내 4) 한 줄 격려.", messages: [{ role: "user", content: (topic ? "주제: " + topic + "\n" : "") + "학습자의 글:\n" + text }] }) });
+    const j = await r.json();
+    if (!r.ok) throw new Error((j.error && j.error.message) || "요청에 실패했어요");
+    out.innerHTML = "<pre>" + esc((j.content && j.content[0] && j.content[0].text) || "") + "</pre>";
+  } catch (e) { out.innerHTML = '<p class="fb bad">' + esc(e.message || "오류가 발생했어요") + "</p>"; }
+}
+
+/* ===== 라우터 ===== */
+function render() {
+  cache = {}; document.body.classList.toggle("dark", !!S.settings.dark);
+  let out;
+  if (!S.profile) out = viewSetup();
+  else if (sessionStorage.getItem("wl_ok") !== "1") out = viewLogin();
+  else {
+    const p = (location.hash || "#/home").replace(/^#\//, "").split("/");
+    switch (p[0]) {
+      case "start": out = viewStart(p[1]); break;
+      case "session": out = viewSession(); break;
+      case "result": out = viewResult(); break;
+      case "stats": out = viewStats(); break;
+      case "grades": out = viewGrades(); break;
+      case "review": out = viewReview(); break;
+      case "rewards": out = viewRewards(); break;
+      case "settings": out = viewSettings(); break;
+      case "ai": out = viewAi(); break;
+      default: out = viewHome();
+    }
+  }
+  if (!out) return;
+  $("#app").innerHTML = out.html;
+  if (sess && (location.hash === "#/session")) {
+    const q = curQ();
+    if (q && q.autoplay && !sess.fb && q.audio && !sess.played) { sess.played = sess.i + "|" + q.audio.text; speak(q.audio.text, q.audio.lang); }
+    if (q && q.type === "text" && !sess.fb) { const a = $("#ans"); if (a) a.focus(); }
+  }
+}
+
+/* ===== 이벤트 ===== */
+function recStart() {
+  const q = curQ(); if (!SR || sess.fb || sess.rec) return; const r = new SR(); r.lang = L[q.lang].stt; r.maxAlternatives = 3; r.interimResults = false; sess.rec = true; let got = false; render();
+  r.onresult = e => { got = true; const alts = Array.from(e.results[0]).map(a => a.transcript), score = Math.max.apply(null, alts.map(a => simScore(a, [q.target].concat(q.alt)))); sess.rec = false; sess.fb = { ok: score >= 60, score, heard: alts[0] }; recordAnswer(q, score >= 60, score); render(); };
+  r.onerror = e => { if (got) return; sess.rec = false; toast("음성을 인식하지 못했어요(" + (e.error || "오류") + "). 다시 시도하거나 건너뛰세요."); render(); };
+  r.onend = () => { if (!got && sess && sess.rec) { sess.rec = false; render(); } };
+  try { r.start(); } catch (err) { sess.rec = false; toast("마이크를 시작할 수 없어요."); render(); }
+}
+function answerSpeak(score) { const q = curQ(); sess.fb = { ok: score >= 60, score }; recordAnswer(q, score >= 60, score); render(); }
+function nextQ() { sess.i++; sess.fb = null; sess.flip = false; sess.tr = false; sess.rec = false; sess.played = ""; render(); }
+function validPack(o) {
+  if (!o || !L[o.lang] || !(o.level >= 0 && o.level <= 3) || !Array.isArray(o.units) || !o.units.length) return false;
+  return o.units.every(u => u && u.t && Array.isArray(u.w) && u.w.length >= 4 && u.w.every(w => w && w.w && w.k && w.e && w.ek) && (!u.p || (u.p.t && u.p.k && u.p.q && Array.isArray(u.p.o) && u.p.o.length >= 2)));
+}
+function exportData() {
+  const copy = JSON.parse(JSON.stringify(S)); copy.settings.apiKey = "";
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(copy)], { type: "application/json" })); a.download = "외국어공부-백업-" + today() + ".json"; document.body.appendChild(a); a.click(); a.remove();
+}
+document.addEventListener("click", e => {
+  const say = e.target.closest("[data-say]"); if (say) { speak(say.dataset.say, say.dataset.lang); return; }
+  const t = e.target.closest("[data-act]"); if (!t) return; const act = t.dataset.act, lang = t.dataset.lang;
+  switch (act) {
+    case "setup": { const name = $("#name").value.trim(), p1 = $("#pin").value, p2 = $("#pin2").value; if (!name) return toast("이름을 입력해 주세요."); if (!/^\d{4}$/.test(p1)) return toast("PIN은 숫자 4자리예요."); if (p1 !== p2) return toast("PIN이 서로 달라요."); S.profile = { name, pin: hashPin(name, p1) }; sessionStorage.setItem("wl_ok", "1"); markAttend(); checkBadges(); save(); go("#/home"); break; }
+    case "login": { const p = $("#pin").value; if (hashPin(S.profile.name, p) !== S.profile.pin) { toast("PIN이 맞지 않아요."); return; } sessionStorage.setItem("wl_ok", "1"); markAttend(); checkBadges(); save(); go("#/home"); break; }
+    case "forgot": if (confirm("PIN을 잊으면 데이터를 초기화해야 해요. 백업 파일이 있다면 초기화 후 불러오기로 복원할 수 있어요. 초기화할까요?")) { localStorage.removeItem(KEY); S = loadState(); sessionStorage.removeItem("wl_ok"); render(); } break;
+    case "placeStart": { const lvl = +t.dataset.lvl; if (!confirm(L[lang].name + " · " + LV[lvl] + " 레벨 테스트를 시작할까요? (21문항, 약 15~20분)")) return; startSession("placement", lang, buildTest(lang, lvl), { lvl, title: L[lang].name + " 레벨 테스트" }); break; }
+    case "monthly": { const st = S.langs[lang]; if (!confirm(L[lang].name + " 월간 승급 테스트를 시작할까요? 이번 달에는 한 번만 응시할 수 있어요.")) return; startSession("monthly", lang, buildTest(lang, st.level), { lvl: st.level, title: L[lang].name + " 승급 테스트" }); break; }
+    case "study": { const d = buildDaily(lang); startSession("daily", lang, d.qs, { title: L[lang].name + " · " + d.unitName }); break; }
+    case "reviewStart": { const qs = dueReviews(lang).slice(0, 15).map(k => qFromRef(lang, S.review[k].ref)).filter(Boolean); if (!qs.length) return toast("지금 복습할 문제가 없어요."); startSession("review", lang, qs, { title: L[lang].name + " 복습" }); break; }
+    case "flip": sess.flip = true; render(); break;
+    case "trans": sess.tr = !sess.tr; render(); break;
+    case "pick": { if (sess.fb) return; const q = curQ(), i = +t.dataset.i, ok = i === q.ans; sess.fb = { ok, pick: i }; recordAnswer(q, ok, null); render(); break; }
+    case "submit": { if (sess.fb) return; const q = curQ(), v = $("#ans").value, ok = checkText(q, v); sess.fb = { ok, input: v }; recordAnswer(q, ok, null); render(); break; }
+    case "rec": recStart(); break;
+    case "self": answerSpeak(+t.dataset.score); break;
+    case "skip": answerSpeak(0); break;
+    case "next": nextQ(); break;
+    case "quit": if (confirm("학습을 그만할까요? 완료하지 않으면 수강 완료로 기록되지 않아요.")) { sess = null; go("#/home"); } break;
+    case "statLang": statLang = lang; render(); break;
+    case "gradeLang": gradeLang = lang; render(); break;
+    case "calPrev": case "calNext": { const m = calMonth || today().slice(0, 7); const [y, mo] = m.split("-").map(Number), d = new Date(y, mo - 1 + (act === "calNext" ? 1 : -1), 1); calMonth = d.getFullYear() + "-" + pad(d.getMonth() + 1); render(); break; }
+    case "addHol": { const v = $("#holDate").value; if (!v) return toast("날짜를 선택해 주세요."); if (S.settings.hDel.indexOf(v) >= 0) S.settings.hDel = S.settings.hDel.filter(x => x !== v); else if (S.settings.hAdd.indexOf(v) < 0) S.settings.hAdd.push(v); save(); render(); break; }
+    case "delHol": { const k = t.dataset.k; if (S.settings.hAdd.indexOf(k) >= 0) S.settings.hAdd = S.settings.hAdd.filter(x => x !== k); else S.settings.hDel.push(k); save(); render(); break; }
+    case "chgPin": { const o = $("#oldPin").value, n = $("#newPin").value; if (hashPin(S.profile.name, o) !== S.profile.pin) return toast("현재 PIN이 맞지 않아요."); if (!/^\d{4}$/.test(n)) return toast("새 PIN은 숫자 4자리예요."); S.profile.pin = hashPin(S.profile.name, n); save(); toast("PIN을 변경했어요."); render(); break; }
+    case "export": exportData(); break;
+    case "import": $("#impFile").click(); break;
+    case "reset": if (confirm("모든 기록이 삭제돼요. 정말 초기화할까요?") && confirm("되돌릴 수 없어요. 먼저 내보내기를 하셨나요? 그래도 초기화할까요?")) { localStorage.removeItem(KEY); sessionStorage.removeItem("wl_ok"); S = loadState(); location.hash = "#/home"; render(); } break;
+    case "packImport": { try { const o = JSON.parse($("#packText").value), list = Array.isArray(o) ? o : [o]; if (!list.length || !list.every(validPack)) throw new Error("형식 오류"); list.forEach(p => S.packs.push(p)); save(); toast("콘텐츠 " + list.reduce((a, p) => a + p.units.length, 0) + "개 유닛을 추가했어요."); render(); } catch (err) { toast("JSON 형식을 확인해 주세요. (단어 4개 이상, w·k·e·ek 필수)"); } break; }
+    case "aiRun": aiRun(); break;
+  }
+});
+document.addEventListener("change", e => {
+  const t = e.target;
+  if (t.id === "impFile" && t.files && t.files[0]) {
+    const f = t.files[0], rd = new FileReader();
+    rd.onload = () => { try { const o = JSON.parse(rd.result); if (!o || !o.profile || !o.v) throw new Error("x"); if (!confirm("현재 기록을 이 백업으로 바꿉니다. 계속할까요?")) return; const d = defaultState(); S = Object.assign(d, o, { settings: Object.assign(d.settings, o.settings || {}, { apiKey: S.settings.apiKey }) }); save(); sessionStorage.removeItem("wl_ok"); toast("불러왔어요. PIN을 다시 입력해 주세요."); render(); } catch (err) { toast("백업 파일을 읽을 수 없어요."); } };
+    rd.readAsText(f); return;
+  }
+  const k = t.dataset && t.dataset.set; if (!k) return;
+  if (t.type === "checkbox") S.settings[k] = t.checked; else if (k === "rate") S.settings.rate = parseFloat(t.value); else S.settings[k] = t.value;
+  if (k === "notify" && t.checked) { if ("Notification" in window) Notification.requestPermission().then(p => { if (p !== "granted") { S.settings.notify = false; save(); toast("브라우저 알림 권한이 필요해요."); render(); } }); else { S.settings.notify = false; toast("이 브라우저는 알림을 지원하지 않아요."); } }
+  save(); if (k === "dark" || k === "furigana" || k === "pinyin" || k === "hangul") render();
+});
+document.addEventListener("keydown", e => {
+  if (e.key !== "Enter") return;
+  if (e.target.id === "ans") { const b = $('[data-act="submit"]'); if (b) b.click(); else { const n = $('[data-act="next"]'); if (n) n.click(); } }
+  else if (e.target.id === "pin" && S.profile && sessionStorage.getItem("wl_ok") !== "1") { const b = $('[data-act="login"]'); if (b) b.click(); }
+});
+window.addEventListener("hashchange", render);
+
+/* ===== 알림 ===== */
+function notifyTick() {
+  if (!S.settings.notify || !("Notification" in window) || Notification.permission !== "granted" || !S.profile || sessionStorage.getItem("wl_ok") !== "1") return;
+  const now = new Date(), hm = pad(now.getHours()) + ":" + pad(now.getMinutes()), t = today();
+  if (S.notified === t || hm < S.settings.notifyTime) return;
+  const need = Object.keys(S.langs).filter(l => !todayDone(l) && (!isRest(t) || openMakeup(l) > 0));
+  if (!need.length) return;
+  S.notified = t; save();
+  try { new Notification("외국어공부", { body: "오늘 학습이 남아 있어요: " + need.map(l => L[l].name).join(", ") }); } catch (e) { /* 일부 모바일 브라우저는 미지원 */ }
+}
+setInterval(notifyTick, 30000);
+
+/* ===== 시작 ===== */
+if (S.profile && sessionStorage.getItem("wl_ok") === "1") { markAttend(); }
+window.__WL = { get S() { return S; }, get sess() { return sess; }, render, buildTest, buildDaily, startSession, finish, status, rangeStats, streak, credits, simScore, checkText, decidePlacement, decideMonthly, wordsOf, levelUnits, recStart, nextQ };
+render();
+})();</script></body></html>
