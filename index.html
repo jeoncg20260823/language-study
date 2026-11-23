@@ -66,7 +66,24 @@ pre{white-space:pre-wrap;word-break:break-word;background:var(--bg);padding:12px
 .lock{max-width:360px;margin:12vh auto 0}
 details summary{cursor:pointer;color:var(--pri);font-weight:600}
 .trbox{white-space:pre-line;background:var(--pri-soft);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:15px}
+ul{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
 </style></head><body><div id="app"></div><div id="toast"></div><script>(function(){"use strict";
+/* 버전·업데이트 내용 (새 버전을 낼 때마다 맨 위에 추가) */
+const APP_VERSION = "2.1.0";
+const CHANGELOG = [
+  { v: "2.1.0", d: "2026-11-23", items: [
+    "앱 버전 표시와 업데이트 안내(이 화면)를 추가했어요.",
+    "영어 중급 유닛이 5개에서 9개로 늘었어요. 처음 5개 중 남은 유닛이 1개가 되면 나머지 4개가 자동으로 열려요.",
+    "새 유닛 주제: 음식과 식당, 주거와 동네, 교육과 학습, 여가와 취미."] },
+  { v: "2.0.0", d: "2026-11-23", items: [
+    "영어 중급·고급에 문법·독해·회화·숙어·청취 영역을 추가했어요(4지선다, 번역 버튼, 풀이 해설).",
+    "청취는 대본을 듣고 영어 질문을 음성으로 들은 뒤 답해요. 번역은 답한 뒤에 열려요.",
+    "중급·고급은 어휘·문법·독해·회화·숙어·청취·쓰기·말하기 8개 영역으로 평가돼요.",
+    "유닛 자동충전: 처음 5개가 열리고 남은 유닛이 1개가 되면 5개가 추가로 열려요.",
+    "영어 초보자·초급, 일본어, 중국어는 이전 방식 그대로예요."] },
+  { v: "1.0.0", d: "2026-11-22", items: [
+    "첫 버전: 레벨 테스트, 일일 학습, 출석·수강 관리, 성적, 월간 승급 테스트, 오답노트 복습, XP·배지, 다크모드."] }
+];
 /* 외국어공부 - 내장 학습 콘텐츠 (영어·일본어·중국어)
  * 구조: WL_CONTENT[언어][레벨 0~3][유닛] = {t, w:[단어...], p:{지문}}
  * 단어: {w 단어, r 읽기(후리가나/병음), h 한글발음, k 뜻, e 예문, er 예문 읽기, ek 예문 뜻}
@@ -775,6 +792,160 @@ WL_CONTENT.en[3] = [
        ["What will happen after the talk?", "강연 후에는 무엇이 있나요?", ["A short Q and A session", "A concert", "A lunch break", "A test"], "short Q and A."],
        ["What will the groups practice?", "소그룹은 무엇을 연습하나요?", ["Interviews", "Presentations on sales", "Cooking", "Dancing"], "practice interviews."]]))
 ];
+/* 영어 중급 예비 유닛 6~10 (자동충전용) */
+WL_CONTENT.en[2].push(
+  NU("음식과 식당",
+    [E("cuisine", "요리, 음식 문화", "She loves Italian cuisine.", "그녀는 이탈리아 요리를 아주 좋아한다."),
+     E("ingredient", "재료", "Fresh ingredients make the dish taste better.", "신선한 재료가 요리를 더 맛있게 만든다."),
+     E("recommend", "추천하다", "Could you recommend a good restaurant?", "좋은 식당을 추천해 주시겠어요?"),
+     E("appetizer", "전채 요리", "We shared an appetizer before the main dish.", "우리는 메인 요리 전에 전채 요리를 나눠 먹었다."),
+     E("reserve", "예약하다", "I'd like to reserve a table for four.", "네 명 자리를 예약하고 싶어요.")],
+    [G("My father cooks ___ than my mother.", ["better", "good", "best", "more good"], "아버지는 어머니보다 요리를 더 잘하신다.", "than과 함께 well의 비교급 better를 씁니다."),
+     G("The restaurant ___ by a famous chef last year.", ["was opened", "opened", "has opened", "is opening"], "그 식당은 작년에 유명한 셰프에 의해 문을 열었다.", "행위자 by a chef가 있으므로 수동태입니다."),
+     G("I'm not used to ___ spicy food.", ["eating", "eat", "ate", "eaten"], "나는 매운 음식을 먹는 데 익숙하지 않다.", "be used to 뒤에는 동명사가 옵니다."),
+     G("Would you like ___ coffee or tea?", ["either", "neither", "both", "each"], "커피나 차 중 하나 드시겠어요?", "either A or B 구조입니다."),
+     G("The pasta was so delicious ___ I ordered another one.", ["that", "which", "what", "as"], "파스타가 너무 맛있어서 하나 더 주문했다.", "so ~ that 구문입니다."),
+     G("If I ___ a better cook, I would open a restaurant.", ["were", "am", "will be", "was being"], "내가 더 훌륭한 요리사라면 식당을 열 텐데.", "가정법 과거에서 be동사는 were를 씁니다.")],
+    Q("Many people think that eating out is always more expensive than cooking at home, but that is not always true. When you buy ingredients for one person, you often waste food because packages are too big. Some small restaurants offer lunch sets at very reasonable prices. Of course, eating out too often can be costly, so it is best to find a balance.",
+      "많은 사람들이 외식은 항상 집에서 요리하는 것보다 비싸다고 생각하지만 늘 그런 것은 아니다. 한 사람분의 재료를 사면 포장 단위가 커서 음식을 버리는 경우가 많다. 일부 작은 식당은 아주 합리적인 가격에 점심 세트를 제공한다. 물론 너무 자주 외식하면 비용이 들 수 있으니 균형을 찾는 것이 가장 좋다.",
+      [["Why do people waste food when cooking for one?", "혼자 요리할 때 음식을 버리는 이유는?", ["The packages are too big.", "The food is too spicy.", "They cook too slowly.", "They eat too much."], "packages are too big."],
+       ["What do some small restaurants offer?", "일부 작은 식당이 제공하는 것은?", ["Lunch sets at reasonable prices", "Free dinners", "Cooking classes", "Home delivery only"], "lunch sets."],
+       ["What does the writer suggest?", "글쓴이가 제안하는 것은?", ["Finding a balance", "Never eating out", "Eating out every day", "Buying bigger packages"], "best to find a balance."]]),
+    [Q("A: Are you ready to order?\nB: Yes. I'll have the grilled salmon, please.\nA: Would you like soup or salad with that?\nB: Salad, please. And could I have the dressing on the side?\nA: Of course. Anything to drink?",
+       "A: 주문하시겠어요?\nB: 네. 연어구이로 할게요.\nA: 수프와 샐러드 중 어느 것으로 드릴까요?\nB: 샐러드로 주세요. 드레싱은 따로 주실 수 있나요?\nA: 물론이죠. 음료는 필요하세요?",
+       [["What does B order?", "B는 무엇을 주문하나요?", ["Grilled salmon", "Steak", "Pasta", "Pizza"], "grilled salmon."],
+        ["What does B ask for with the salad?", "B는 샐러드와 함께 무엇을 요청하나요?", ["The dressing on the side", "More salt", "A bigger bowl", "No vegetables"], "dressing on the side."]]),
+     Q("A: This place is crowded. Should we wait?\nB: The waiter said it'll be about twenty minutes.\nA: I'm starving. Is there another place nearby?\nB: There's a noodle shop around the corner.\nA: Let's go there instead.",
+       "A: 여기 사람이 많네요. 기다릴까요?\nB: 웨이터가 20분쯤 걸린대요.\nA: 배가 너무 고파요. 근처에 다른 곳 있어요?\nB: 모퉁이 돌면 국숫집이 있어요.\nA: 거기로 가요.",
+       [["How long is the wait?", "대기 시간은 얼마나 되나요?", ["About twenty minutes", "About two hours", "About five minutes", "About an hour"], "twenty minutes."],
+        ["What will they do?", "그들은 어떻게 할 건가요?", ["Go to a noodle shop", "Wait here", "Cook at home", "Order delivery"], "go there instead."]])],
+    [I("eat out", "외식하다", "We eat ___ on Fridays.", "out", ["off", "up", "away"]),
+     I("a piece of cake", "식은 죽 먹기", "The test was a piece ___ cake.", "of", ["from", "with", "for"]),
+     I("be on a diet", "다이어트 중이다", "She is ___ a diet this month.", "on", ["in", "at", "with"]),
+     I("order in", "배달시켜 먹다", "Let's order ___ tonight.", "in", ["on", "up", "out"]),
+     I("split the bill", "계산서를 나누다", "Shall we split the ___?", "bill", ["cost", "pay", "check up"]),
+     I("go with", "~을 선택하다; ~와 어울리다", "I'll go ___ the chicken.", "with", ["to", "for", "on"])],
+    Q("Welcome to Green Bowl Kitchen. Let me tell you about today's specials.\nOur soup of the day is pumpkin soup.\nThe chef's special is baked chicken with roasted vegetables.\nAll main dishes come with a free drink until three p.m.\nWe also have a vegetarian menu, available on request.\nDesserts are half price after eight in the evening.\nPlease let us know if you have any food allergies.\nWe hope you enjoy your meal.",
+      "그린 볼 키친에 오신 것을 환영합니다. 오늘의 특별 메뉴를 안내드립니다.\n오늘의 수프는 호박 수프입니다.\n셰프 추천 메뉴는 구운 채소를 곁들인 치킨구이입니다.\n오후 3시까지는 모든 메인 요리에 음료가 무료로 제공됩니다.\n요청하시면 채식 메뉴도 이용하실 수 있습니다.\n디저트는 저녁 8시 이후 반값입니다.\n음식 알레르기가 있으면 알려 주세요.\n맛있게 드세요.",
+      [["What is the soup of the day?", "오늘의 수프는?", ["Pumpkin soup", "Tomato soup", "Onion soup", "Corn soup"], "pumpkin soup."],
+       ["Until when is a drink free with main dishes?", "메인 요리에 음료가 무료인 시간은?", ["Until three p.m.", "Until eight p.m.", "All day", "Until noon"], "until three p.m."],
+       ["When are desserts half price?", "디저트가 반값인 때는?", ["After eight in the evening", "At lunch", "On Mondays", "Before noon"], "after eight in the evening."],
+       ["What should customers tell the staff?", "손님이 직원에게 알려야 하는 것은?", ["If they have food allergies", "Their phone number", "Their age", "Their job"], "any food allergies."]])),
+
+  NU("주거와 동네",
+    [E("neighborhood", "동네", "It's a quiet neighborhood with many parks.", "공원이 많은 조용한 동네다."),
+     E("landlord", "집주인", "The landlord will fix the heater tomorrow.", "집주인이 내일 난방기를 고쳐 줄 것이다."),
+     E("utilities", "공과금", "Utilities are included in the rent.", "공과금은 월세에 포함되어 있다."),
+     E("furnished", "가구가 갖춰진", "I'm looking for a furnished apartment.", "가구가 갖춰진 아파트를 찾고 있어요."),
+     E("commute", "통근하다; 통근", "My commute takes about forty minutes.", "내 통근 시간은 약 40분 걸린다.")],
+    [G("The apartment ___ I'm renting is near the station.", ["which", "who", "what", "whose"], "내가 세 들어 사는 아파트는 역 근처에 있다.", "사물을 꾸미는 관계대명사는 which입니다."),
+     G("We have lived here ___ ten years.", ["for", "since", "during", "from"], "우리는 이곳에서 10년 동안 살아 왔다.", "기간 앞에는 for를 씁니다."),
+     G("The rent ___ every year by the landlord.", ["is raised", "raises", "raised", "is raising"], "월세는 매년 집주인에 의해 오른다.", "월세는 '올려지는' 대상이라 수동태입니다."),
+     G("I wish the neighbors ___ so loud at night.", ["weren't", "aren't", "won't be", "haven't been"], "이웃들이 밤에 그렇게 시끄럽지 않으면 좋겠다.", "wish + 과거형(were not)으로 현재 소망을 나타냅니다."),
+     G("You ___ pay the deposit before moving in.", ["have to", "has to", "having to", "had to be"], "입주 전에 보증금을 내야 한다.", "주어 You에는 have to를 씁니다."),
+     G("This flat is ___ than that one, but it's closer to work.", ["smaller", "small", "the smallest", "more small"], "이 집은 저 집보다 작지만 직장과 더 가깝다.", "small의 비교급은 smaller입니다.")],
+    Q("Moving to a new city can be exciting, but finding a place to live is not easy. First, decide how much rent you can afford, including utilities. Next, visit the neighborhood at different times of day to check noise and safety. Finally, read the contract carefully before signing. Many tenants have problems because they did not understand the conditions.",
+      "새 도시로 이사하는 것은 설렐 수 있지만 살 곳을 찾는 일은 쉽지 않다. 먼저 공과금을 포함해 감당할 수 있는 월세가 얼마인지 정하라. 다음으로 소음과 안전을 확인하려고 하루 중 여러 시간대에 동네를 방문하라. 마지막으로 서명하기 전에 계약서를 꼼꼼히 읽어라. 많은 세입자가 조건을 이해하지 못해서 문제를 겪는다.",
+      [["What should you decide first?", "가장 먼저 정해야 할 것은?", ["How much rent you can afford", "What furniture to buy", "Which city to leave", "Who to live with"], "how much rent you can afford."],
+       ["Why should you visit at different times of day?", "하루 중 다른 시간대에 방문해야 하는 이유는?", ["To check noise and safety", "To meet the landlord", "To take photos", "To avoid traffic"], "check noise and safety."],
+       ["Why do many tenants have problems?", "많은 세입자가 문제를 겪는 이유는?", ["They didn't understand the conditions.", "They paid too early.", "They moved too slowly.", "They had no friends."], "did not understand the conditions."]]),
+    [Q("A: Hello, I'm calling about the apartment for rent.\nB: Yes, it's a two-bedroom on the fifth floor.\nA: How much is the monthly rent?\nB: It's nine hundred dollars, and utilities are separate.\nA: Could I see it this weekend?",
+       "A: 안녕하세요, 임대 아파트 때문에 전화드렸어요.\nB: 네, 5층의 방 두 개짜리예요.\nA: 월세는 얼마인가요?\nB: 900달러이고 공과금은 별도예요.\nA: 이번 주말에 볼 수 있을까요?",
+       [["How many bedrooms does the apartment have?", "아파트에는 침실이 몇 개 있나요?", ["Two", "One", "Three", "Four"], "two-bedroom."],
+        ["Are utilities included?", "공과금이 포함되어 있나요?", ["No, they are separate.", "Yes, all of them.", "Only water.", "Only gas."], "utilities are separate."]]),
+     Q("A: Excuse me, the heater in my room isn't working.\nB: I'm sorry to hear that. Since when?\nA: Since last night. It's freezing in here.\nB: I'll send a repairman this afternoon.\nA: Thank you. What time will he come?\nB: Between two and four.",
+       "A: 실례합니다, 제 방 난방기가 작동하지 않아요.\nB: 안타깝네요. 언제부터요?\nA: 어젯밤부터요. 여기 너무 추워요.\nB: 오늘 오후에 수리 기사를 보낼게요.\nA: 감사합니다. 몇 시에 오나요?\nB: 2시에서 4시 사이예요.",
+       [["What is the problem?", "무엇이 문제인가요?", ["The heater doesn't work.", "The door is locked.", "The rent is high.", "The room is dirty."], "heater isn't working."],
+        ["When will the repairman come?", "수리 기사는 언제 오나요?", ["Between two and four", "Tomorrow morning", "At midnight", "Next week"], "between two and four."]])],
+    [I("move in", "입주하다", "We're moving ___ next Friday.", "in", ["on", "up", "at"]),
+     I("move out", "이사 나가다", "He moved ___ last month.", "out", ["off", "away", "over"]),
+     I("look for", "~을 찾다", "I'm looking ___ a cheaper place.", "for", ["at", "to", "up"]),
+     I("next door", "옆집에", "My friend lives ___ door.", "next", ["near", "by", "close"]),
+     I("sign up for", "~에 가입하다", "Residents can sign up ___ the gym.", "for", ["to", "at", "of"]),
+     I("get used to", "~에 익숙해지다", "I'm getting used ___ the new area.", "to", ["for", "at", "on"])],
+    Q("Attention, residents of Maple Apartments.\nNext Tuesday, water will be shut off from nine in the morning until noon.\nThis is for repair work on the main pipe.\nPlease store enough water in advance.\nThe parking lot on the east side will be closed on Wednesday for painting.\nPlease move your car to the west side by eight a.m.\nIf you have any questions, call the management office.\nThank you for your understanding.",
+      "메이플 아파트 입주민 여러분께 알립니다.\n다음 주 화요일 오전 9시부터 정오까지 단수됩니다.\n본관 수리 작업 때문입니다.\n미리 충분한 물을 받아 두세요.\n동쪽 주차장은 수요일에 페인트 작업으로 폐쇄됩니다.\n오전 8시까지 차를 서쪽으로 옮겨 주세요.\n문의 사항은 관리 사무소로 전화하세요.\n양해해 주셔서 감사합니다.",
+      [["When will the water be shut off?", "단수는 언제인가요?", ["Next Tuesday morning", "This Friday night", "Next Sunday", "Tomorrow noon"], "Tuesday from nine until noon."],
+       ["Why will the water be shut off?", "왜 단수되나요?", ["For repair work on the main pipe", "For a fire drill", "For a party", "For cleaning the roof"], "repair work on the main pipe."],
+       ["What should residents do with their cars?", "주민들은 차를 어떻게 해야 하나요?", ["Move them to the west side", "Wash them", "Sell them", "Park on the street"], "move your car to the west side."],
+       ["Who should residents call with questions?", "문의는 누구에게 해야 하나요?", ["The management office", "The police", "The post office", "A repair shop"], "call the management office."]])),
+
+  NU("교육과 학습",
+    [E("assignment", "과제", "The assignment is due on Monday.", "과제 마감은 월요일이다."),
+     E("lecture", "강의", "The lecture lasted two hours.", "강의는 두 시간 동안 이어졌다."),
+     E("scholarship", "장학금", "She won a scholarship to study abroad.", "그녀는 유학을 위한 장학금을 받았다."),
+     E("attend", "참석하다", "All students must attend the orientation.", "모든 학생은 오리엔테이션에 참석해야 한다."),
+     E("improve", "향상시키다", "Reading daily will improve your vocabulary.", "매일 읽으면 어휘력이 향상될 것이다.")],
+    [G("The students ___ the exam when the fire alarm rang.", ["were taking", "took", "have taken", "take"], "화재 경보가 울렸을 때 학생들은 시험을 보고 있었다.", "특정 순간에 진행 중이던 일은 과거진행형입니다."),
+     G("She studies hard ___ she can get a scholarship.", ["so that", "because of", "although", "unless"], "그녀는 장학금을 받을 수 있도록 열심히 공부한다.", "목적을 나타내는 so that입니다."),
+     G("I'm interested ___ learning a third language.", ["in", "on", "at", "for"], "나는 세 번째 언어를 배우는 데 관심이 있다.", "be interested in 구조입니다."),
+     G("The teacher made us ___ the essay again.", ["rewrite", "to rewrite", "rewriting", "rewrote"], "선생님은 우리에게 에세이를 다시 쓰게 했다.", "make + 목적어 + 동사원형 구조입니다."),
+     G("By the time he graduates, he ___ four years here.", ["will have spent", "spent", "spends", "has spent"], "졸업할 때쯤이면 그는 이곳에서 4년을 보낸 셈이다.", "미래 시점까지의 완료는 미래완료입니다."),
+     G("Neither the students nor the teacher ___ the answer yesterday.", ["knew", "know", "were knowing", "have known"], "학생들도 선생님도 어제 답을 알지 못했다.", "yesterday가 있으므로 과거형 knew를 씁니다.")],
+    Q("Online learning has grown rapidly in the past few years. Students can watch lectures at any time and review difficult parts as many times as they need. However, many learners find it hard to stay motivated without a teacher nearby. To solve this problem, some courses use weekly live sessions and small study groups. Teachers say that regular interaction helps students finish their courses.",
+      "온라인 학습은 지난 몇 년간 빠르게 성장했다. 학생들은 아무 때나 강의를 보고 어려운 부분은 필요한 만큼 여러 번 복습할 수 있다. 하지만 많은 학습자가 곁에 선생님이 없으면 동기를 유지하기 어렵다고 느낀다. 이 문제를 해결하려고 일부 강좌는 주간 실시간 수업과 소규모 스터디 그룹을 활용한다. 교사들은 정기적인 상호작용이 학생들이 과정을 끝마치도록 돕는다고 말한다.",
+      [["What is an advantage of online learning?", "온라인 학습의 장점은?", ["Students can review lectures many times.", "Students never need books.", "Classes are always free.", "Exams are easier."], "review difficult parts as many times as they need."],
+       ["What problem do many learners have?", "많은 학습자가 겪는 문제는?", ["Staying motivated", "Finding a computer", "Paying fees", "Choosing a school"], "hard to stay motivated."],
+       ["How do some courses solve this problem?", "일부 강좌는 이를 어떻게 해결하나요?", ["With live sessions and study groups", "With longer videos", "With harder tests", "With fewer lessons"], "weekly live sessions and small study groups."]]),
+    [Q("A: Did you finish the assignment for Professor Kim's class?\nB: Not yet. I'm still working on the conclusion.\nA: It's due tomorrow at noon, isn't it?\nB: Yes. I'll stay up late tonight to finish it.\nA: Good luck. Send me a message if you need help.",
+       "A: Kim 교수님 수업 과제 끝냈어요?\nB: 아직요. 결론을 쓰는 중이에요.\nA: 내일 정오까지잖아요, 그렇죠?\nB: 네. 오늘 밤 늦게까지 깨어서 끝낼 거예요.\nA: 행운을 빌어요. 도움이 필요하면 메시지 보내요.",
+       [["What is B working on?", "B가 하고 있는 것은?", ["The conclusion of an assignment", "A new job", "A test", "A trip"], "still working on the conclusion."],
+        ["When is the assignment due?", "과제 마감은 언제인가요?", ["Tomorrow at noon", "Tonight at ten", "Next week", "Today at five"], "due tomorrow at noon."]]),
+     Q("A: I'm thinking about taking an English course this summer.\nB: Which one? There are many choices.\nA: I want one that focuses on speaking.\nB: The community center offers a conversation class twice a week.\nA: That sounds perfect. How much does it cost?\nB: It's free for residents.",
+       "A: 이번 여름에 영어 강좌를 들을까 생각 중이에요.\nB: 어떤 거요? 선택지가 많아요.\nA: 말하기에 집중하는 걸 원해요.\nB: 주민센터에서 주 2회 회화 수업을 해요.\nA: 딱이네요. 비용이 얼마예요?\nB: 주민은 무료예요.",
+       [["What kind of course does A want?", "A는 어떤 강좌를 원하나요?", ["One that focuses on speaking", "One about writing", "One about math", "One about music"], "focuses on speaking."],
+        ["How much does the class cost for residents?", "주민의 수업료는?", ["It is free.", "Ten dollars", "Fifty dollars", "A hundred dollars"], "free for residents."]])],
+    [I("hand in", "제출하다", "Please hand ___ your homework by Friday.", "in", ["on", "up", "at"]),
+     I("catch up on", "(밀린 것을) 따라잡다", "I need to catch up ___ my reading.", "on", ["in", "at", "to"]),
+     I("drop out of", "(학교 등을) 중퇴하다", "He dropped ___ of college.", "out", ["off", "down", "away"]),
+     I("pay attention to", "~에 주의를 기울이다", "Please pay attention ___ the teacher.", "to", ["on", "at", "for"]),
+     I("be good at", "~을 잘하다", "She is good ___ math.", "at", ["in", "on", "to"]),
+     I("brush up on", "(실력을) 다시 갈고닦다", "I want to brush ___ on my English.", "up", ["in", "off", "out"])],
+    Q("Good morning, students. This is Ms. Lee from the school office with a few announcements.\nThe library will be open until nine this week because of final exams.\nStudents who need extra help can visit the tutoring center on the second floor.\nThe deadline for scholarship applications is next Friday.\nPlease remember to bring your student ID card to every exam.\nThe school festival will be held after exams on the twentieth.\nThank you, and good luck on your tests.\nHave a great day.",
+      "학생 여러분 안녕하세요. 학교 사무실의 Lee입니다. 몇 가지 공지드립니다.\n이번 주 기말고사 때문에 도서관은 9시까지 문을 엽니다.\n추가 도움이 필요한 학생은 2층 학습 지원 센터를 이용하세요.\n장학금 신청 마감은 다음 주 금요일입니다.\n모든 시험에 학생증을 꼭 가져오세요.\n학교 축제는 시험이 끝난 뒤 20일에 열립니다.\n감사합니다. 시험 잘 보세요.\n좋은 하루 보내세요.",
+      [["Why will the library stay open until nine?", "도서관이 9시까지 여는 이유는?", ["Because of final exams", "Because of a party", "Because of repairs", "Because of a holiday"], "because of final exams."],
+       ["Where is the tutoring center?", "학습 지원 센터는 어디에 있나요?", ["On the second floor", "In the gym", "In the cafeteria", "On the roof"], "second floor."],
+       ["What is due next Friday?", "다음 주 금요일이 마감인 것은?", ["Scholarship applications", "Homework", "Exam fees", "Library books"], "deadline for scholarship applications."],
+       ["What should students bring to every exam?", "시험마다 가져와야 하는 것은?", ["Their student ID card", "Their lunch", "Their parents", "A dictionary"], "student ID card."]])),
+
+  NU("여가와 취미",
+    [E("hobby", "취미", "Photography is my favorite hobby.", "사진 촬영은 내가 가장 좋아하는 취미다."),
+     E("tournament", "대회", "Our team won the local tournament.", "우리 팀이 지역 대회에서 우승했다."),
+     E("exhibition", "전시회", "We visited an art exhibition on Sunday.", "우리는 일요일에 미술 전시회를 방문했다."),
+     E("relax", "휴식을 취하다", "I like to relax by listening to music.", "나는 음악을 들으며 쉬는 것을 좋아한다."),
+     E("enthusiast", "열성 팬, 애호가", "He is a keen fan and a movie enthusiast.", "그는 열렬한 영화 애호가다.")],
+    [G("I enjoy ___ to jazz music in the evening.", ["listening", "to listen", "listen", "listened"], "나는 저녁에 재즈 음악을 듣는 것을 즐긴다.", "enjoy 뒤에는 동명사가 옵니다."),
+     G("He has played the guitar ___ he was ten.", ["since", "for", "during", "while"], "그는 열 살 때부터 기타를 쳐 왔다.", "시작 시점을 나타내는 절 앞에는 since를 씁니다."),
+     G("The concert ___ canceled because of the storm.", ["was", "were", "has", "did"], "콘서트는 폭풍 때문에 취소되었다.", "단수 주어 + 과거 수동태 was canceled입니다."),
+     G("Would you rather ___ a movie or go hiking?", ["watch", "to watch", "watching", "watched"], "영화를 보는 게 낫겠어요, 아니면 등산을 가는 게 낫겠어요?", "would rather 뒤에는 동사원형이 옵니다."),
+     G("The book ___ I borrowed from you was fantastic.", ["that", "who", "what", "where"], "네게 빌린 그 책은 환상적이었다.", "사물 선행사를 꾸미는 목적격 관계대명사 that입니다."),
+     G("She plays tennis ___ than her brother.", ["better", "good", "best", "more good"], "그녀는 오빠보다 테니스를 더 잘 친다.", "well의 비교급은 better입니다.")],
+    Q("Having a hobby is good for your mental health. Studies show that people who spend time on activities they enjoy feel less stressed and sleep better. Hobbies can also help you meet new friends. For example, joining a hiking club or a book group connects you with people who share your interests. You do not need to be an expert; the most important thing is to have fun.",
+      "취미를 갖는 것은 정신 건강에 좋다. 연구에 따르면 즐기는 활동에 시간을 쓰는 사람들은 스트레스를 덜 받고 잠도 더 잘 잔다. 취미는 새 친구를 사귀는 데도 도움이 된다. 예를 들어 등산 동호회나 독서 모임에 가입하면 관심사가 같은 사람들과 이어진다. 전문가일 필요는 없다. 가장 중요한 것은 즐기는 것이다.",
+      [["What do studies show about people with hobbies?", "취미가 있는 사람에 대해 연구는 무엇을 보여 주나요?", ["They feel less stressed.", "They earn more money.", "They work longer hours.", "They travel more."], "less stressed and sleep better."],
+       ["How can hobbies help people socially?", "취미는 사회적으로 어떻게 도움이 되나요?", ["They help people meet new friends.", "They make people famous.", "They replace jobs.", "They cost less."], "meet new friends."],
+       ["What is the most important thing about a hobby?", "취미에서 가장 중요한 것은?", ["Having fun", "Being an expert", "Winning prizes", "Spending money"], "the most important thing is to have fun."]]),
+    [Q("A: What do you usually do on weekends?\nB: I like cycling along the river. How about you?\nA: I prefer staying home and baking.\nB: Really? What do you bake?\nA: Mostly bread and cookies. I'll bring some on Monday.",
+       "A: 주말에는 보통 뭐 해요?\nB: 강변을 따라 자전거 타는 걸 좋아해요. 당신은요?\nA: 저는 집에서 빵 굽는 걸 더 좋아해요.\nB: 정말요? 뭘 구워요?\nA: 주로 빵과 쿠키예요. 월요일에 좀 가져올게요.",
+       [["What does B like to do on weekends?", "B는 주말에 무엇을 좋아하나요?", ["Cycling along the river", "Baking", "Shopping", "Sleeping"], "cycling along the river."],
+        ["What will A bring on Monday?", "A는 월요일에 무엇을 가져올까요?", ["Bread and cookies", "A bicycle", "Movie tickets", "Flowers"], "bring some on Monday."]]),
+     Q("A: Have you seen the new action movie?\nB: Not yet. Is it worth watching?\nA: The story is a bit weak, but the special effects are amazing.\nB: I'm more into dramas, to be honest.\nA: Then you should try the new one by Director Park.",
+       "A: 새 액션 영화 봤어요?\nB: 아직요. 볼 만해요?\nA: 이야기는 좀 약하지만 특수 효과가 대단해요.\nB: 솔직히 저는 드라마를 더 좋아해요.\nA: 그럼 박 감독의 신작을 보세요.",
+       [["What does A say about the action movie?", "A는 액션 영화에 대해 뭐라고 하나요?", ["The special effects are amazing.", "The story is perfect.", "It is too short.", "It is boring."], "story weak, effects amazing."],
+        ["What kind of movies does B prefer?", "B는 어떤 영화를 선호하나요?", ["Dramas", "Action movies", "Horror movies", "Cartoons"], "more into dramas."]])],
+    [I("be into", "~에 빠져 있다", "She is really ___ photography.", "into", ["at", "on", "to"]),
+     I("take up", "(취미 등을) 시작하다", "I took ___ yoga last month.", "up", ["on", "in", "off"]),
+     I("hang out", "어울려 놀다", "We hang ___ at the café after class.", "out", ["off", "up", "on"]),
+     I("have a blast", "아주 즐겁게 보내다", "We had a ___ at the festival.", "blast", ["boom", "bang", "burst"]),
+     I("kill time", "시간을 때우다", "I read magazines to kill ___ at the airport.", "time", ["hour", "day", "clock"]),
+     I("keep up with", "~을 계속 따라가다", "I try to keep up ___ the latest movies.", "with", ["to", "on", "at"])],
+    Q("Hello, and welcome to the Riverside Community Center newsletter.\nThis month we have many new classes for beginners.\nThe pottery class meets on Tuesdays at six.\nThe guitar class starts on the fifth and runs for eight weeks.\nIf you enjoy being outdoors, join our Saturday morning walking group.\nAll classes are open to adults of any age.\nThe fee is twenty dollars per class, and materials are included.\nRegistration closes at the end of this week.",
+      "리버사이드 주민센터 소식지에 오신 것을 환영합니다.\n이번 달에는 초보자를 위한 새 강좌가 많이 있습니다.\n도자기 수업은 화요일 6시에 열립니다.\n기타 수업은 5일에 시작해 8주간 진행됩니다.\n야외 활동을 좋아하신다면 토요일 아침 걷기 모임에 참여하세요.\n모든 수업은 나이와 상관없이 성인이면 참여할 수 있습니다.\n수강료는 수업당 20달러이며 재료비가 포함되어 있습니다.\n등록은 이번 주 말에 마감됩니다.",
+      [["When does the pottery class meet?", "도자기 수업은 언제 열리나요?", ["On Tuesdays at six", "On Fridays at six", "On Saturday mornings", "On Sundays at noon"], "Tuesdays at six."],
+       ["How long does the guitar class run?", "기타 수업은 얼마나 진행되나요?", ["Eight weeks", "Two weeks", "Eight days", "Eight months"], "eight weeks."],
+       ["What is included in the fee?", "수강료에 포함된 것은?", ["Materials", "Lunch", "Transportation", "Insurance"], "materials are included."],
+       ["When does registration close?", "등록은 언제 마감되나요?", ["At the end of this week", "Tomorrow", "Next month", "On the fifth"], "closes at the end of this week."]]))
+);
 /* ===== 공통 유틸 ===== */
 const L = WL_META.langs, LV = WL_META.levels, AR = WL_META.areas, AREAS = Object.keys(AR);
 const OLD_AREAS = ["vocab", "reading", "listening", "writing", "speaking"], NEW_AREAS = ["vocab", "grammar", "reading", "dialogue", "idiom", "listening", "writing", "speaking"];
@@ -1195,6 +1366,7 @@ function langCard(l) {
 function viewHome() {
   const t = today(), rest = isRest(t), langs = Object.keys(S.langs);
   let h = '<div class="hero"><div><h1>' + esc(S.profile.name) + '님, 안녕하세요</h1><p class="muted">' + fmtDate(t) + " · " + (rest ? "쉬는 날" : "학습일") + ' · 오늘 출석 완료 ✓</p></div><div class="xp">Lv.' + ulevel() + " · " + S.xp + " XP</div></div>";
+  if (S.seenVersion !== APP_VERSION) h += '<div class="banner">🆕 v' + APP_VERSION + ' 업데이트: ' + esc(CHANGELOG[0].items[0]) + ' <a href="#/updates">자세히 보기</a> <button class="link" data-act="seenVer">닫기</button></div>';
   const pend = langs.filter(l => !todayDone(l) && (!rest || openMakeup(l) > 0));
   if (pend.length) h += '<div class="banner">⏰ ' + (rest ? "이번 주 부족분을 만회할 수 있어요: " : "오늘 학습이 남아 있어요: ") + pend.map(l => L[l].name).join(", ") + "</div>";
   if (!langs.length) h += '<div class="card pri"><h3>학습할 언어를 골라 시작해 보세요</h3><p class="muted">언어마다 레벨을 고른 뒤 그 수준에 맞는 레벨 테스트를 보고, 결과에 따라 학습 레벨이 정해져요.</p></div>';
@@ -1202,6 +1374,7 @@ function viewHome() {
   const rest2 = Object.keys(L).filter(l => !S.langs[l]);
   if (rest2.length) { h += "<h2>언어 추가</h2><div class=\"grid2\">" + rest2.map(l => '<a class="card center" href="#/start/' + l + '"><h3>' + L[l].name + '</h3><span class="muted small">레벨 선택 후 테스트 시작</span></a>').join("") + "</div>"; }
   h += '<p class="small"><a href="#/ai">✍️ AI 작문 첨삭(선택 기능)</a></p>';
+  h += '<p class="small muted center">외국어공부 v' + APP_VERSION + ' · <a href="#/updates">업데이트 내용</a></p>';
   return page(h, "home");
 }
 function viewStart(lang) {
@@ -1414,11 +1587,16 @@ function viewSettings() {
   h += '<div class="card"><h3>알림</h3>' + sw("notify", "학습 알림", s.notify, "앱(브라우저 탭)을 열어 둔 동안만 알려요. 닫혀 있으면 앱을 열 때 홈에 안내가 떠요.") + '<div class="switch"><span>알림 시각</span><input type="time" data-set="notifyTime" value="' + esc(s.notifyTime) + '" style="width:130px"></div></div>';
   h += '<div class="card"><h3>쉬는 날(공휴일)</h3><p class="small muted">토·일은 자동으로 쉬는 날이에요. 내장 공휴일은 2027년 말까지이며 공식 달력으로 꼭 확인해 주세요. 이후는 직접 추가하세요.</p>' +
     '<div class="row">' + hs.map(k => '<span class="chip">' + k.slice(2) + ' <button class="link" data-act="delHol" data-k="' + k + '">✕</button></span>').join("") + '</div><div class="row" style="margin-top:10px"><input type="date" id="holDate" style="width:170px"><button class="btn small" data-act="addHol">공휴일 추가</button></div></div>';
+  h += '<div class="card"><h3>앱 정보</h3><p>외국어공부 <b>v' + APP_VERSION + '</b> <span class="muted small">(' + CHANGELOG[0].d + ')</span></p><p><a href="#/updates">업데이트 내용 보기</a></p></div>';
   h += '<div class="card"><h3>프로필</h3><p>' + esc(S.profile.name) + '</p><details><summary>PIN 변경</summary><p><input type="password" id="oldPin" inputmode="numeric" maxlength="4" placeholder="현재 PIN"></p><p><input type="password" id="newPin" inputmode="numeric" maxlength="4" placeholder="새 PIN 4자리"></p><button class="btn small" data-act="chgPin">변경</button></details></div>';
   h += '<div class="card"><h3>데이터</h3><p class="small muted">기록은 이 브라우저에만 저장돼요. 기기를 바꾸거나 브라우저 데이터를 지우기 전에 꼭 내보내기 하세요.</p><div class="row"><button class="btn" data-act="export">내보내기</button><button class="btn" data-act="import">불러오기</button><button class="btn danger" data-act="reset">전체 초기화</button></div><input type="file" id="impFile" accept=".json,application/json" hidden></div>';
   h += '<div class="card"><h3>콘텐츠 팩 불러오기</h3><p class="small muted">Claude가 만들어 준 학습 팩(JSON)을 붙여 넣으면 해당 레벨에 유닛이 추가돼요.</p><textarea id="packText" placeholder="JSON 붙여넣기"></textarea><p><button class="btn" data-act="packImport">추가하기</button></p><details><summary>JSON 형식 보기</summary><pre>' + esc('{"lang":"en","level":0,"units":[{"t":"유닛 이름","w":[{"w":"cat","r":"","h":"","k":"고양이","e":"I have a cat.","er":"","ek":"나는 고양이가 있다."}],"p":{"t":"본문","r":"","k":"번역","q":"질문","o":["정답","오답1","오답2"]}}]}') + "</pre></details></div>";
   h += '<div class="card"><h3>AI 첨삭 키(선택)</h3><p class="small muted">자유 작문 첨삭에만 쓰이는 선택 기능이에요. Anthropic API 키는 무료 발급이지만 사용량은 선불 크레딧으로 과금돼요. 키는 이 브라우저에만 저장되고 백업 파일에는 포함되지 않아요.</p><input type="password" data-set="apiKey" value="' + esc(s.apiKey) + '" placeholder="sk-ant-..." autocomplete="off"></div>';
   return page(h, "settings");
+}
+function viewUpdates() {
+  S.seenVersion = APP_VERSION; save();
+  return page('<h1>업데이트 내용</h1><p class="muted">현재 버전 <b>v' + APP_VERSION + "</b></p>" + CHANGELOG.map(c => '<div class="card"><div class="row between"><h3>v' + c.v + '</h3><span class="muted small">' + c.d + "</span></div><ul>" + c.items.map(i => "<li>" + esc(i) + "</li>").join("") + "</ul></div>").join("") + '<p><a href="#/home">← 홈으로</a></p>');
 }
 function viewAi() {
   const langs = Object.keys(L);
@@ -1455,6 +1633,7 @@ function render() {
       case "rewards": out = viewRewards(); break;
       case "settings": out = viewSettings(); break;
       case "ai": out = viewAi(); break;
+      case "updates": out = viewUpdates(); break;
       default: out = viewHome();
     }
   }
@@ -1489,13 +1668,14 @@ document.addEventListener("click", e => {
   const say = e.target.closest("[data-say]"); if (say) { speak(say.dataset.say, say.dataset.lang); return; }
   const t = e.target.closest("[data-act]"); if (!t) return; const act = t.dataset.act, lang = t.dataset.lang;
   switch (act) {
-    case "setup": { const name = $("#name").value.trim(), p1 = $("#pin").value, p2 = $("#pin2").value; if (!name) return toast("이름을 입력해 주세요."); if (!/^\d{4}$/.test(p1)) return toast("PIN은 숫자 4자리예요."); if (p1 !== p2) return toast("PIN이 서로 달라요."); S.profile = { name, pin: hashPin(name, p1) }; sessionStorage.setItem("wl_ok", "1"); markAttend(); checkBadges(); save(); go("#/home"); break; }
+    case "setup": { const name = $("#name").value.trim(), p1 = $("#pin").value, p2 = $("#pin2").value; if (!name) return toast("이름을 입력해 주세요."); if (!/^\d{4}$/.test(p1)) return toast("PIN은 숫자 4자리예요."); if (p1 !== p2) return toast("PIN이 서로 달라요."); S.profile = { name, pin: hashPin(name, p1) }; S.seenVersion = APP_VERSION; sessionStorage.setItem("wl_ok", "1"); markAttend(); checkBadges(); save(); go("#/home"); break; }
     case "login": { const p = $("#pin").value; if (hashPin(S.profile.name, p) !== S.profile.pin) { toast("PIN이 맞지 않아요."); return; } sessionStorage.setItem("wl_ok", "1"); markAttend(); checkBadges(); save(); go("#/home"); break; }
     case "forgot": if (confirm("PIN을 잊으면 데이터를 초기화해야 해요. 백업 파일이 있다면 초기화 후 불러오기로 복원할 수 있어요. 초기화할까요?")) { localStorage.removeItem(KEY); S = loadState(); sessionStorage.removeItem("wl_ok"); render(); } break;
     case "placeStart": { const lvl = +t.dataset.lvl; if (!confirm(L[lang].name + " · " + LV[lvl] + " 레벨 테스트를 시작할까요? (21문항, 약 15~20분)")) return; startSession("placement", lang, buildTest(lang, lvl), { lvl, title: L[lang].name + " 레벨 테스트" }); break; }
     case "monthly": { const st = S.langs[lang]; if (!confirm(L[lang].name + " 월간 승급 테스트를 시작할까요? 이번 달에는 한 번만 응시할 수 있어요.")) return; startSession("monthly", lang, buildTest(lang, st.level), { lvl: st.level, title: L[lang].name + " 승급 테스트" }); break; }
     case "study": { const d = buildDaily(lang); startSession("daily", lang, d.qs, { title: L[lang].name + " · " + d.unitName }); break; }
     case "reviewStart": { const qs = dueReviews(lang).slice(0, 15).map(k => qFromRef(lang, S.review[k].ref)).filter(Boolean); if (!qs.length) return toast("지금 복습할 문제가 없어요."); startSession("review", lang, qs, { title: L[lang].name + " 복습" }); break; }
+    case "seenVer": S.seenVersion = APP_VERSION; save(); render(); break;
     case "flip": sess.flip = true; render(); break;
     case "trans": sess.tr = !sess.tr; render(); break;
     case "pick": { if (sess.fb) return; const q = curQ(), i = +t.dataset.i, ok = i === q.ans; sess.fb = { ok, pick: i }; recordAnswer(q, ok, null); render(); break; }
