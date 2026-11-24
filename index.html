@@ -79,10 +79,12 @@ ul{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
 .tracebox{position:relative;width:min(320px,86vw);aspect-ratio:1;margin:8px auto;border:2px dashed var(--line);border-radius:14px;background:var(--card);touch-action:none}
 .tracebox .tguide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:min(230px,62vw);color:var(--line);opacity:.8;pointer-events:none;user-select:none}
 .tracebox canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.lt{display:inline-block;min-width:1.4em;color:var(--muted,#888);font-weight:700}
 </style></head><body><div id="app"></div><div id="toast"></div><script>(function(){"use strict";
 /* 버전·업데이트 내용 (새 버전을 낼 때마다 맨 위에 추가) */
-const APP_VERSION = "2.19.0";
+const APP_VERSION = "2.19.1";
 const CHANGELOG = [
+  { v: "2.19.1", d: "2026-11-24", items: ["문제·보기 듣기 버튼을 하나로 합쳤어요: '번역 보기' 옆의 '문제/답 듣기'를 누르면 문제와 보기를 차례로 읽어줘요", "보기에 a. b. c. d. 머리표를 붙였어요"] },
   { v: "2.19.0", d: "2026-11-24", items: [
     "단어 카드: 발음(영어는 발음기호, 일본어·중국어는 읽기·한글 발음), 대표 뜻·품사를 맨 앞에 두고 뜻 2~3개와 예문 2~3개를 보여줘요 (영어·일본어·중국어 1,800단어 전부)",
     "학습 중 이전/다음 버튼 추가, 틀린 문제는 '바로 다시 풀기'로 즉시 재도전 (결과 화면에서는 틀린 문제만 다시 풀기)",
@@ -13159,17 +13161,20 @@ function qHtml(q) {
     return h;
   }
   h += '<p class="muted small">' + AR[q.area] + (q.weak ? " · 보충" : "") + (q.fromReview ? " · 복습" : "") + "</p>";
-  if (q.ctx) { h += '<div class="ctx">' + esc(q.ctx.t) + (q.ctx.r && ((q.lang === "ja" && S.settings.furigana) || S.settings.pinyin) ? '<div class="small muted">' + esc(q.ctx.r) + "</div>" : "") + "</div>"; h += '<div class="row">' + (q.audio ? speakBtn(q.audio.text, q.audio.lang, "지문 듣기") : "") + '<button class="btn small" data-act="trans">' + (s.tr ? "번역 숨기기" : "번역 보기") + "</button></div>" + (s.tr ? '<p class="small muted">' + esc(q.ctx.k) + "</p>" : ""); }
   const lg = L[s.lang].tts;
-  h += "<p><b>" + esc(q.prompt) + "</b>" + (isTL(q.prompt) ? " " + miniSay(q.prompt, lg, "질문 듣기") : "") + "</p>";
+  const qaTxt = [q.prompt].concat(q.type === "mcq" ? q.opts : []).filter(t => t && isTL(t)).join(". ");
+  const qaBtn = qaTxt ? '<button class="btn small" data-say="' + esc(qaTxt) + '" data-lang="' + lg + '">🔊 문제/답 듣기</button>' : "";
+  if (q.ctx) { h += '<div class="ctx">' + esc(q.ctx.t) + (q.ctx.r && ((q.lang === "ja" && S.settings.furigana) || S.settings.pinyin) ? '<div class="small muted">' + esc(q.ctx.r) + "</div>" : "") + "</div>"; h += '<div class="row">' + (q.audio ? speakBtn(q.audio.text, q.audio.lang, "지문 듣기") : "") + qaBtn + '<button class="btn small" data-act="trans">' + (s.tr ? "번역 숨기기" : "번역 보기") + "</button></div>" + (s.tr ? '<p class="small muted">' + esc(q.ctx.k) + "</p>" : ""); }
+  h += "<p><b>" + esc(q.prompt) + "</b>" + "</p>";
   if (q.big) h += '<div class="big">' + q.big + "</div>";
   if (q.sent) { h += q.sent; const st = stripHtml(q.sent); if (st.indexOf("＿＿＿") < 0 && isTL(st) && !q.audio) h += '<div class="center">' + speakBtn(st, lg, "문장 듣기") + "</div>"; }
   if (q.sub) h += '<p class="center muted small">' + esc(q.sub) + "</p>";
   if (q.audio && !q.ctx) h += '<div class="center">' + speakBtn(q.audio.text, q.audio.lang, q.area === "listening" ? (q.audio2 ? "대본 듣기" : "다시 듣기") : "듣기") + (q.audio2 ? " " + speakBtn(q.audio2.text, q.audio2.lang, q.audio2.label) : "") + "</div>";
-  if (q.tr && !q.ctx && (!q.trLate || fb)) h += '<div class="center"><button class="btn small" data-act="trans">' + (s.tr ? "번역 숨기기" : "번역 보기") + "</button></div>" + (s.tr ? '<div class="trbox">' + esc(q.tr) + "</div>" : "");
+  const trOn = q.tr && !q.ctx && (!q.trLate || fb);
+  if (!q.ctx && (trOn || qaBtn)) h += '<div class="center row" style="justify-content:center">' + qaBtn + (trOn ? '<button class="btn small" data-act="trans">' + (s.tr ? "번역 숨기기" : "번역 보기") + "</button>" : "") + "</div>" + (trOn && s.tr ? '<div class="trbox">' + esc(q.tr) + "</div>" : "");
   if (q.trLate && !fb) h += '<p class="center muted small">번역과 대본은 답을 고른 뒤에 볼 수 있어요.</p>';
   if (q.type === "mcq") {
-    h += '<div class="opts">' + q.opts.map((o, i) => { let c = "opt"; if (fb) { if (i === q.ans) c += " ok"; else if (i === fb.pick) c += " bad"; } return '<div class="optrow"><button class="' + c + '" data-act="pick" data-i="' + i + '"' + (fb ? " disabled" : "") + ">" + esc(o) + "</button>" + (isTL(o) ? miniSay(o, lg, "보기 듣기") : "") + "</div>"; }).join("") + "</div>";
+    h += '<div class="opts">' + q.opts.map((o, i) => { let c = "opt"; if (fb) { if (i === q.ans) c += " ok"; else if (i === fb.pick) c += " bad"; } return '<div class="optrow"><button class="' + c + '" data-act="pick" data-i="' + i + '"' + (fb ? " disabled" : "") + "><b class=\"lt\">" + "abcdefgh".charAt(i) + ".</b> " + esc(o) + "</button></div>"; }).join("") + "</div>";
     if (fb) h += '<div class="fb ' + (fb.ok ? "ok" : "bad") + '">' + (fb.ok ? "정답이에요!" : "아쉬워요") + "<small>정답: " + esc(q.correctText) + "</small>" + (q.x ? "<small>해설: " + esc(q.x) + "</small>" : "") + blankListen(q, lg) + "</div>";
   } else if (q.type === "text") {
     if (q.hint) h += '<p class="center muted">' + esc(q.hint) + "</p>";
